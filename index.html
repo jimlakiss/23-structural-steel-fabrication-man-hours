@@ -191,6 +191,17 @@
           <div class="custom-input-sup">mm</div>
         </td>
       </tr>
+      <tr>
+        <td>
+          Labour factor
+          <div style="font-size:11px;color:#aaa;margin-top:2px">1.00 = base Methvin rates · reduce to calibrate against known shop rates</div>
+        </td>
+        <td class="custom-td-input">
+          <input type="number" id="labourFactor" class="custom-input" tabindex="3"
+                 oninput="calculate()" value="1.00" step="0.05" min="0.1" max="5">
+          <div class="custom-input-sup">×</div>
+        </td>
+      </tr>
     </tbody>
   </table>
 
@@ -288,7 +299,7 @@
   <div class="custom-div-text no-padding">6. Where standard Carbon Steel welding procedures and filler metal can be used, alloy adjustments will not apply to ASTM A333 Gr. 1 and Gr. 9. Consult Piping lead engineer.</div>
 
   <div class="custom-spacer"></div>
-  <p class="note">Man-hours: methvin.org formulas. Surface area: approximate from section geometry — verify against InfraBuild eCat for fire protection schedules.</p>
+  <p class="note">Man-hours: regression curves from Methvin empirical data — fabrication 542.38×(kg/m)⁻⁰·⁷²⁴¹, plate 804.49×(t)⁻¹·⁰⁰¹⁶, installation −14.85·ln(kg/m)+83.355, plate install 269.98×(t)⁻¹. Use the labour factor to calibrate against your own shop rates. Surface area: approximate from section geometry — verify against InfraBuild eCat for fire protection schedules.</p>
 </div>
 
 <script>
@@ -474,10 +485,10 @@ function renderPlates() {
     row.className = 'plate-row';
     var kgm = plateKgm(p);
     row.innerHTML =
-      '<input type="number" placeholder="width (mm)" value="' + p.w + '" oninput="onPlateInput(' + i + ',\'w\',this.value)">' +
+      '<input type="number" id="pw' + i + '" placeholder="width (mm)" value="' + p.w + '" oninput="onPlateInput(' + i + ',\'w\',this.value)">' +
       '<span style="color:#999">×</span>' +
-      '<input type="number" placeholder="thk (mm)" value="' + p.t + '" oninput="onPlateInput(' + i + ',\'t\',this.value)">' +
-      '<span class="kgm-badge">' + (isFinite(kgm) && kgm > 0 ? '= ' + fmt(kgm) + ' kg/m' : '') + '</span>' +
+      '<input type="number" id="pt' + i + '" placeholder="thk (mm)" value="' + p.t + '" oninput="onPlateInput(' + i + ',\'t\',this.value)">' +
+      '<span class="kgm-badge" id="pkgm' + i + '">' + (isFinite(kgm) && kgm > 0 ? '= ' + fmt(kgm) + ' kg/m' : '') + '</span>' +
       '<button class="btn-remove" onclick="removePlate(' + i + ')" title="Remove">×</button>';
     list.appendChild(row);
   });
@@ -485,7 +496,12 @@ function renderPlates() {
 
 function onPlateInput(i, key, val) {
   plates[i][key] = val;
-  renderPlates();
+  // Update only the kg/m badge — don't re-render or focus is lost mid-type
+  var badge = document.getElementById('pkgm' + i);
+  if (badge) {
+    var kgm = plateKgm(plates[i]);
+    badge.textContent = (isFinite(kgm) && kgm > 0) ? '= ' + fmt(kgm) + ' kg/m' : '';
+  }
   refreshTotals();
 }
 
@@ -519,14 +535,21 @@ function refreshTotals() {
 }
 
 // ── Core calculator
+// Formulas are regression curves fitted to Methvin's empirical man-hour data:
+//   Structural member fabrication:   542.38 × (kg/m)^−0.7241      mhr/t
+//   Plate fabrication:               804.49 × (t mm)^−1.0016       mhr/t
+//   Structural member installation: −14.85 × ln(kg/m) + 83.355    mhr/t
+//   Plate installation:              269.98 × (t mm)^−1            mhr/t
+// All outputs are multiplied by the labour factor (default 1.00).
 function calculate(overrideSA) {
   var v1 = parseFloat(document.getElementById('txtStructuralMember').value);
   var v2 = parseFloat(document.getElementById('txtPlateThickness').value);
+  var lf = parseFloat(document.getElementById('labourFactor').value) || 1;
 
-  setResult('lblCalcStructuralMember',             542.38  * Math.pow(v1, -0.7241));
-  setResult('lblCalcPlateFabrication',             804.49  * Math.pow(v2, -1.0016));
-  setResult('lblCalcStructuralMemberInstallation', -14.85  * Math.log(v1) + 83.355);
-  setResult('lblCalcPlateInstallation',            269.98  * Math.pow(v2, -1));
+  setResult('lblCalcStructuralMember',             lf * 542.38  * Math.pow(v1, -0.7241));
+  setResult('lblCalcPlateFabrication',             lf * 804.49  * Math.pow(v2, -1.0016));
+  setResult('lblCalcStructuralMemberInstallation', lf * (-14.85 * Math.log(v1) + 83.355));
+  setResult('lblCalcPlateInstallation',            lf * 269.98  * Math.pow(v2, -1));
 
   // Surface area
   var sa = (overrideSA !== undefined) ? overrideSA : baseSA;
