@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Structural Steel Man-Hours Calculator</title>
+<style>
+  body {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #333;
+    background: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+  }
+  h1 {
+    font-size: 20px;
+    color: #2c3e50;
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 4px;
+    padding: 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  }
+  .custom-table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  .custom-table td,
+  .custom-table th {
+    border: 1px solid #4f81bd;
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+  .custom-table th {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-align: left;
+    background-color: #4f81bd;
+    color: white;
+  }
+  .custom-table tr:nth-child(even) { background-color: #f2f2f2; }
+  .custom-table tr:hover { background-color: #ddd; }
+  .custom-table.no-border td { border: 0; background-color: #fff; }
+  .custom-table.no-border tr:nth-child(even) { background-color: #fff; }
+  .custom-table.no-border tr:hover { background-color: #fff; }
+  .custom-spacer { padding: 10px; }
+  .custom-input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    margin: 2px !important;
+    min-height: 30px !important;
+    padding: 6px 48px 6px 10px !important;
+    font-size: 13px !important;
+    font-family: monospace;
+    border-radius: 2px;
+  }
+  .custom-input:focus {
+    outline: none;
+    border-color: #4f81bd;
+    box-shadow: 0 0 0 2px rgba(79,129,189,0.25);
+  }
+  .custom-input-sup {
+    position: absolute;
+    right: 7px;
+    top: 50%;
+    margin-top: -14px;
+    height: 28px;
+    background-color: #e9ecef;
+    width: 38px;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 29px;
+    font-weight: bold;
+    border-left: 1px solid #dad9d9;
+    font-size: 11px;
+    color: #555;
+  }
+  .custom-td-input {
+    position: relative;
+    text-align: right;
+    width: 150px;
+  }
+  .t-right { text-align: right; }
+  .t-center { text-align: center !important; }
+  .custom-div-text {
+    color: #505050;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    padding: 12px 8px 4px 2px;
+    line-height: 20px;
+  }
+  .custom-div-text strong { font-size: 15px; }
+  .no-padding { padding-top: 4px; padding-bottom: 2px; }
+  .section-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #888;
+    margin: 18px 0 6px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 4px;
+  }
+  .result-value {
+    font-weight: bold;
+    color: #1a5276;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Structural Steel Fabrication Man-Hours</h1>
+  <p class="subtitle">Enter values below to calculate fabrication and erection man-hours per tonne.</p>
+
+  <div class="section-label">Inputs</div>
+  <table class="custom-table no-border" style="max-width:500px">
+    <tbody>
+      <tr>
+        <td>Structural member</td>
+        <td class="custom-td-input">
+          <input type="number" id="txtStructuralMember" class="custom-input" tabindex="1"
+                 oninput="calculate()" autofocus placeholder="e.g. 50">
+          <div class="custom-input-sup">kg/m</div>
+        </td>
+      </tr>
+      <tr>
+        <td>Plate thickness</td>
+        <td class="custom-td-input">
+          <input type="number" id="txtPlateThickness" class="custom-input" tabindex="2"
+                 oninput="calculate()" placeholder="e.g. 10">
+          <div class="custom-input-sup">mm</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="custom-spacer"></div>
+
+  <div class="section-label">Results</div>
+  <table class="custom-table" style="max-width:500px">
+    <tbody>
+      <tr><th colspan="3">Fabrication man-hours</th></tr>
+      <tr>
+        <td>Structural member</td>
+        <td class="t-right result-value"><span id="lblCalcStructuralMember">—</span></td>
+        <td>mhr/t</td>
+      </tr>
+      <tr>
+        <td>Plate fabrication</td>
+        <td class="t-right result-value"><span id="lblCalcPlateFabrication">—</span></td>
+        <td>mhr/t</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="custom-spacer"></div>
+
+  <table class="custom-table" style="max-width:500px">
+    <tbody>
+      <tr><th colspan="3">Erection / installation man-hours</th></tr>
+      <tr>
+        <td>Structural member installation</td>
+        <td class="t-right result-value"><span id="lblCalcStructuralMemberInstallation">—</span></td>
+        <td>mhr/t</td>
+      </tr>
+      <tr>
+        <td>Plate installation</td>
+        <td class="t-right result-value"><span id="lblCalcPlateInstallation">—</span></td>
+        <td>mhr/t</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="custom-spacer"></div>
+  <div class="custom-spacer"></div>
+
+  <div>
+    <div class="custom-div-text no-padding"><strong>Alloy Man-hour Adjustments</strong></div>
+    <div class="custom-div-text no-padding">Material Classification Groups</div>
+  </div>
+
+  <div class="custom-spacer"></div>
+
+  <table class="custom-table">
+    <tbody>
+      <tr>
+        <th>LABOR OPERATIONS</th>
+        <th class="t-center">1</th><th class="t-center">2</th><th class="t-center">3</th>
+        <th class="t-center">4</th><th class="t-center">5</th><th class="t-center">6</th>
+        <th class="t-center">7</th><th class="t-center">8</th><th class="t-center">9</th>
+      </tr>
+      <tr>
+        <td>BENDS</td>
+        <td class="t-center">1.25</td><td class="t-center">1.25</td><td class="t-center">1.25</td>
+        <td class="t-center">1.25</td><td class="t-center">1.25</td><td class="t-center">1.25</td>
+        <td class="t-center">2.75</td><td class="t-center">1.75</td><td class="t-center">1.25</td>
+      </tr>
+      <tr>
+        <td>WELDS</td>
+        <td class="t-center">1.5</td><td class="t-center">1.75</td><td class="t-center">2.25</td>
+        <td class="t-center">1.75</td><td class="t-center">1.75</td><td class="t-center">1.75</td>
+        <td class="t-center">2.75</td><td class="t-center">2.75</td><td class="t-center">2.75</td>
+      </tr>
+      <tr>
+        <td>LOCAL STRESS RELIEF</td>
+        <td class="t-center">1.25</td><td class="t-center">1.25</td><td class="t-center">1.25</td>
+        <td class="t-center">—</td><td class="t-center">—</td><td class="t-center">—</td>
+        <td class="t-center">—</td><td class="t-center">—</td><td class="t-center">—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="custom-spacer"></div>
+
+  <table class="custom-table">
+    <tbody>
+      <tr><th>GROUP 1</th><td>&nbsp;</td><th>GROUP 4</th><th>GROUP 8</th></tr>
+      <tr><td>ASTM A335-P1</td><td>.50% Moly</td><td>Stainless Steels</td><td>Stainless Steels — Types 317, 321, 347</td></tr>
+      <tr><td>ASTM A335-P2</td><td>.50–.70% Chrome</td><td>Types 304, 309, 310, 316, Duplex</td><td>Copper-Nickel</td></tr>
+      <tr><td>ASTM A335-P12</td><td>.85–1.10% Chrome</td><td>(including "L" &amp; "H" Grades)</td><td>Monel</td></tr>
+      <tr><td>ASTM A335-P11</td><td>1.05–1.45% Chrome</td><td>&nbsp;</td><td>Inconel</td></tr>
+      <tr><td>ASTM A335-P3</td><td>1.50–2.00% Chrome</td><th>GROUP 5</th><td>Incoloy</td></tr>
+      <tr><td>&nbsp;</td><td>&nbsp;</td><td>Copper and Brass</td><td>Alloy 20</td></tr>
+      <tr><th>GROUP 2</th><td>&nbsp;</td><td>&nbsp;</td><td>HF Modified</td></tr>
+      <tr><td>ASTM A335-P3b</td><td>1.75–2.25% Chrome</td><th>GROUP 6</th><td>&nbsp;</td></tr>
+      <tr><td>ASTM A335-P22</td><td>2.00–2.50% Chrome</td><td>Low Temp Carbon Steel (see Note 5)</td><th>GROUP 9</th></tr>
+      <tr><td>ASTM A335-P21</td><td>2.75–3.25% Chrome</td><td>ASTM A333 Gr. 1 (see Note 6)</td><td>Aluminium</td></tr>
+      <tr><td>ASTM A335-P5.b.c</td><td>4.00–6.00% Chrome</td><td>ASTM A333 Gr. 4</td><td>&nbsp;</td></tr>
+      <tr><td>&nbsp;</td><td>&nbsp;</td><td>ASTM A333 Gr. 9 (see Note 6)</td><td>&nbsp;</td></tr>
+      <tr><th>GROUP 3</th><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr><td>ASTM A335-P7</td><td>6.00–8.00% Chrome</td><th>GROUP 7</th><td>&nbsp;</td></tr>
+      <tr><td>ASTM A335-P9</td><td>8.00–10.00% Chrome</td><td>Hastelloy</td><td>&nbsp;</td></tr>
+      <tr><td>Ferritic Chromes</td><td>10.00–15.00% Chrome</td><td>Titanium</td><td>&nbsp;</td></tr>
+      <tr><td>ASTM A333 Gr. 3</td><td>3.50% Nickel</td><td>99% Nickel</td><td>&nbsp;</td></tr>
+    </tbody>
+  </table>
+
+  <div class="custom-spacer"></div>
+
+  <div class="custom-div-text no-padding"><strong>ALLOY MATERIAL ADJUSTMENT NOTES</strong></div>
+  <div class="custom-div-text no-padding">1. Apply the appropriate multiplier above to the corresponding Carbon Steel labor operation.</div>
+  <div class="custom-div-text no-padding">2. Adjustments shown above apply to all wall thicknesses.</div>
+  <div class="custom-div-text no-padding">3. The molybdenum content in alloys listed in Groups 1 through 3 inclusive shall not exceed 1%.</div>
+  <div class="custom-div-text no-padding">4. Adjustments for alloys other than those listed above will have to be researched. Consult Piping lead engineer.</div>
+  <div class="custom-div-text no-padding">5. Low Temp Carbon Steel type ASTM-A333 Gr. 6 is standard Carbon Steel material and alloy adjustments do not apply.</div>
+  <div class="custom-div-text no-padding">6. Where standard Carbon Steel welding procedures and filler metal can be used, alloy adjustments will not apply to Low Temp Carbon Steel types ASTM A333 Gr. 1 and ASTM A333 Gr. 9. Consult Piping lead engineer.</div>
+
+  <div class="custom-spacer"></div>
+  <div style="color:#aaa;font-size:11px;text-align:right">Source: methvin.org — offline calculator</div>
+</div>
+
+<script>
+function calculate() {
+  var v1 = parseFloat(document.getElementById('txtStructuralMember').value);
+  var v2 = parseFloat(document.getElementById('txtPlateThickness').value);
+
+  setResult('lblCalcStructuralMember',             542.38  * Math.pow(v1, -0.7241));
+  setResult('lblCalcPlateFabrication',             804.49  * Math.pow(v2, -1.0016));
+  setResult('lblCalcStructuralMemberInstallation', -14.85  * Math.log(v1) + 83.355);
+  setResult('lblCalcPlateInstallation',            269.98  * Math.pow(v2, -1));
+}
+
+function setResult(id, value) {
+  var el = document.getElementById(id);
+  if (!isFinite(value) || isNaN(value)) {
+    el.textContent = '—';
+  } else {
+    el.textContent = parseFloat(value.toFixed(1)).toLocaleString();
+  }
+}
+</script>
+</body>
+</html>
