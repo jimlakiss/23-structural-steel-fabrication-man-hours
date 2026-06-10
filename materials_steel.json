@@ -1,0 +1,1586 @@
+{
+  "version": "2026.05.08.1",
+  "standard": "ANZ",
+  "source": "InfraBuild Steel - Australian Standard Sections",
+  "notes": "All dimensions in mm, mass in kg/m, area in mm2. Verify against current InfraBuild Blue Book.",
+  "density_kg_m3": 7850,
+  "mass_formula": "mass_kg_m = area_mm2 * density_kg_m3 / 1e6",
+  "sections": {
+    "UB": {
+      "150 UB 14.0": {
+        "d": 150,
+        "bf": 75,
+        "tf": 7.0,
+        "tw": 5.0,
+        "r1": 8,
+        "mass": 14.0,
+        "area": 1780,
+        "perimeter_ext": 450.0
+      },
+      "150 UB 18.0": {
+        "d": 155,
+        "bf": 75,
+        "tf": 9.5,
+        "tw": 6.0,
+        "r1": 8,
+        "mass": 18.0,
+        "area": 2270,
+        "perimeter_ext": 460.0
+      },
+      "180 UB 16.1": {
+        "d": 173,
+        "bf": 90,
+        "tf": 7.0,
+        "tw": 4.5,
+        "r1": 8,
+        "mass": 16.1,
+        "area": 2040,
+        "perimeter_ext": 526.0
+      },
+      "180 UB 18.1": {
+        "d": 175,
+        "bf": 90,
+        "tf": 8.0,
+        "tw": 5.0,
+        "r1": 8,
+        "mass": 18.1,
+        "area": 2310,
+        "perimeter_ext": 530.0
+      },
+      "200 UB 18.2": {
+        "d": 194,
+        "bf": 133,
+        "tf": 7.0,
+        "tw": 4.5,
+        "r1": 8,
+        "mass": 18.2,
+        "area": 2320,
+        "perimeter_ext": 654.0
+      },
+      "200 UB 22.3": {
+        "d": 197,
+        "bf": 133,
+        "tf": 8.5,
+        "tw": 5.5,
+        "r1": 8,
+        "mass": 22.3,
+        "area": 2840,
+        "perimeter_ext": 660.0
+      },
+      "200 UB 25.4": {
+        "d": 203,
+        "bf": 133,
+        "tf": 10.2,
+        "tw": 6.3,
+        "r1": 8,
+        "mass": 25.4,
+        "area": 3230,
+        "perimeter_ext": 672.0
+      },
+      "200 UB 29.8": {
+        "d": 207,
+        "bf": 134,
+        "tf": 12.7,
+        "tw": 7.2,
+        "r1": 11,
+        "mass": 29.8,
+        "area": 3790,
+        "perimeter_ext": 682.0
+      },
+      "250 UB 25.7": {
+        "d": 247,
+        "bf": 124,
+        "tf": 8.0,
+        "tw": 5.0,
+        "r1": 12,
+        "mass": 25.7,
+        "area": 3270,
+        "perimeter_ext": 742.0
+      },
+      "250 UB 31.4": {
+        "d": 252,
+        "bf": 146,
+        "tf": 8.6,
+        "tw": 6.1,
+        "r1": 12,
+        "mass": 31.4,
+        "area": 4010,
+        "perimeter_ext": 796.0
+      },
+      "250 UB 37.3": {
+        "d": 256,
+        "bf": 146,
+        "tf": 10.9,
+        "tw": 6.4,
+        "r1": 12,
+        "mass": 37.3,
+        "area": 4750,
+        "perimeter_ext": 804.0
+      },
+      "310 UB 32.0": {
+        "d": 298,
+        "bf": 149,
+        "tf": 8.0,
+        "tw": 5.5,
+        "r1": 14,
+        "mass": 32.0,
+        "area": 4080,
+        "perimeter_ext": 894.0
+      },
+      "310 UB 40.4": {
+        "d": 304,
+        "bf": 165,
+        "tf": 10.2,
+        "tw": 6.1,
+        "r1": 14,
+        "mass": 40.4,
+        "area": 5170,
+        "perimeter_ext": 938.0
+      },
+      "310 UB 46.2": {
+        "d": 308,
+        "bf": 166,
+        "tf": 11.8,
+        "tw": 6.7,
+        "r1": 14,
+        "mass": 46.2,
+        "area": 5890,
+        "perimeter_ext": 948.0
+      },
+      "360 UB 44.7": {
+        "d": 352,
+        "bf": 171,
+        "tf": 9.7,
+        "tw": 7.0,
+        "r1": 14,
+        "mass": 44.7,
+        "area": 5720,
+        "perimeter_ext": 1046.0
+      },
+      "360 UB 50.7": {
+        "d": 356,
+        "bf": 171,
+        "tf": 11.5,
+        "tw": 7.3,
+        "r1": 14,
+        "mass": 50.7,
+        "area": 6450,
+        "perimeter_ext": 1054.0
+      },
+      "360 UB 56.7": {
+        "d": 359,
+        "bf": 172,
+        "tf": 13.0,
+        "tw": 8.0,
+        "r1": 14,
+        "mass": 56.7,
+        "area": 7230,
+        "perimeter_ext": 1062.0
+      },
+      "410 UB 53.7": {
+        "d": 403,
+        "bf": 178,
+        "tf": 10.9,
+        "tw": 7.6,
+        "r1": 14,
+        "mass": 53.7,
+        "area": 6890,
+        "perimeter_ext": 1162.0
+      },
+      "410 UB 59.7": {
+        "d": 406,
+        "bf": 178,
+        "tf": 12.8,
+        "tw": 7.8,
+        "r1": 14,
+        "mass": 59.7,
+        "area": 7630,
+        "perimeter_ext": 1168.0
+      },
+      "460 UB 67.1": {
+        "d": 454,
+        "bf": 190,
+        "tf": 12.7,
+        "tw": 8.5,
+        "r1": 14,
+        "mass": 67.1,
+        "area": 8580,
+        "perimeter_ext": 1288.0
+      },
+      "460 UB 74.6": {
+        "d": 457,
+        "bf": 190,
+        "tf": 14.5,
+        "tw": 9.1,
+        "r1": 14,
+        "mass": 74.6,
+        "area": 9520,
+        "perimeter_ext": 1294.0
+      },
+      "460 UB 82.1": {
+        "d": 460,
+        "bf": 191,
+        "tf": 16.0,
+        "tw": 9.9,
+        "r1": 14,
+        "mass": 82.1,
+        "area": 10500,
+        "perimeter_ext": 1302.0
+      },
+      "530 UB 82.0": {
+        "d": 524,
+        "bf": 209,
+        "tf": 13.2,
+        "tw": 9.6,
+        "r1": 14,
+        "mass": 82.0,
+        "area": 10500,
+        "perimeter_ext": 1466.0
+      },
+      "530 UB 92.4": {
+        "d": 527,
+        "bf": 209,
+        "tf": 15.6,
+        "tw": 10.2,
+        "r1": 14,
+        "mass": 92.4,
+        "area": 11800,
+        "perimeter_ext": 1472.0
+      },
+      "610 UB 101": {
+        "d": 597,
+        "bf": 228,
+        "tf": 14.8,
+        "tw": 10.6,
+        "r1": 14,
+        "mass": 101,
+        "area": 12900,
+        "perimeter_ext": 1650.0
+      },
+      "610 UB 113": {
+        "d": 602,
+        "bf": 228,
+        "tf": 17.3,
+        "tw": 11.2,
+        "r1": 14,
+        "mass": 113,
+        "area": 14400,
+        "perimeter_ext": 1660.0
+      },
+      "610 UB 125": {
+        "d": 612,
+        "bf": 229,
+        "tf": 19.6,
+        "tw": 11.9,
+        "r1": 14,
+        "mass": 125,
+        "area": 15900,
+        "perimeter_ext": 1682.0
+      }
+    },
+    "UC": {
+      "100 UC 14.8": {
+        "d": 97,
+        "bf": 99,
+        "tf": 7.0,
+        "tw": 5.0,
+        "r1": 11,
+        "mass": 14.8,
+        "area": 1890,
+        "perimeter_ext": 392.0
+      },
+      "150 UC 23.4": {
+        "d": 152,
+        "bf": 152,
+        "tf": 6.8,
+        "tw": 6.1,
+        "r1": 11,
+        "mass": 23.4,
+        "area": 2980,
+        "perimeter_ext": 608.0
+      },
+      "150 UC 30.0": {
+        "d": 157,
+        "bf": 153,
+        "tf": 9.4,
+        "tw": 6.6,
+        "r1": 11,
+        "mass": 30.0,
+        "area": 3830,
+        "perimeter_ext": 620.0
+      },
+      "150 UC 37.2": {
+        "d": 162,
+        "bf": 154,
+        "tf": 11.5,
+        "tw": 8.1,
+        "r1": 11,
+        "mass": 37.2,
+        "area": 4740,
+        "perimeter_ext": 632.0
+      },
+      "200 UC 46.2": {
+        "d": 203,
+        "bf": 203,
+        "tf": 11.0,
+        "tw": 7.3,
+        "r1": 11,
+        "mass": 46.2,
+        "area": 5900,
+        "perimeter_ext": 812.0
+      },
+      "200 UC 52.2": {
+        "d": 206,
+        "bf": 204,
+        "tf": 12.5,
+        "tw": 8.0,
+        "r1": 11,
+        "mass": 52.2,
+        "area": 6660,
+        "perimeter_ext": 820.0
+      },
+      "200 UC 59.5": {
+        "d": 210,
+        "bf": 205,
+        "tf": 14.2,
+        "tw": 9.3,
+        "r1": 11,
+        "mass": 59.5,
+        "area": 7620,
+        "perimeter_ext": 830.0
+      },
+      "250 UC 72.9": {
+        "d": 254,
+        "bf": 254,
+        "tf": 14.2,
+        "tw": 8.6,
+        "r1": 13,
+        "mass": 72.9,
+        "area": 9320,
+        "perimeter_ext": 1016.0
+      },
+      "250 UC 89.5": {
+        "d": 260,
+        "bf": 256,
+        "tf": 17.3,
+        "tw": 10.5,
+        "r1": 13,
+        "mass": 89.5,
+        "area": 11400,
+        "perimeter_ext": 1032.0
+      },
+      "250 UC 107": {
+        "d": 267,
+        "bf": 259,
+        "tf": 20.5,
+        "tw": 13.0,
+        "r1": 13,
+        "mass": 107,
+        "area": 13700,
+        "perimeter_ext": 1052.0
+      },
+      "310 UC 96.8": {
+        "d": 308,
+        "bf": 305,
+        "tf": 15.4,
+        "tw": 9.9,
+        "r1": 16,
+        "mass": 96.8,
+        "area": 12300,
+        "perimeter_ext": 1226.0
+      },
+      "310 UC 118": {
+        "d": 315,
+        "bf": 307,
+        "tf": 18.7,
+        "tw": 11.9,
+        "r1": 16,
+        "mass": 118,
+        "area": 15000,
+        "perimeter_ext": 1244.0
+      },
+      "310 UC 137": {
+        "d": 321,
+        "bf": 309,
+        "tf": 21.7,
+        "tw": 13.8,
+        "r1": 16,
+        "mass": 137,
+        "area": 17400,
+        "perimeter_ext": 1260.0
+      },
+      "310 UC 158": {
+        "d": 327,
+        "bf": 311,
+        "tf": 25.0,
+        "tw": 15.7,
+        "r1": 16,
+        "mass": 158,
+        "area": 20100,
+        "perimeter_ext": 1276.0
+      },
+      "310 UC 179": {
+        "d": 333,
+        "bf": 314,
+        "tf": 28.6,
+        "tw": 18.0,
+        "r1": 16,
+        "mass": 179,
+        "area": 22800,
+        "perimeter_ext": 1294.0
+      },
+      "310 UC 198": {
+        "d": 339,
+        "bf": 317,
+        "tf": 31.4,
+        "tw": 20.0,
+        "r1": 16,
+        "mass": 198,
+        "area": 25200,
+        "perimeter_ext": 1312.0
+      }
+    },
+    "PFC": {
+      "75 PFC": {
+        "d": 75,
+        "bf": 40,
+        "tf": 6.1,
+        "tw": 3.8,
+        "r1": 8,
+        "mass": 5.92,
+        "area": 754,
+        "perimeter_ext": 230.0
+      },
+      "100 PFC": {
+        "d": 100,
+        "bf": 50,
+        "tf": 6.7,
+        "tw": 4.2,
+        "r1": 8,
+        "mass": 8.33,
+        "area": 1060,
+        "perimeter_ext": 300.0
+      },
+      "125 PFC": {
+        "d": 125,
+        "bf": 65,
+        "tf": 8.1,
+        "tw": 5.0,
+        "r1": 8,
+        "mass": 11.9,
+        "area": 1520,
+        "perimeter_ext": 380.0
+      },
+      "150 PFC": {
+        "d": 150,
+        "bf": 75,
+        "tf": 9.0,
+        "tw": 5.5,
+        "r1": 8,
+        "mass": 15.0,
+        "area": 1910,
+        "perimeter_ext": 450.0
+      },
+      "180 PFC": {
+        "d": 180,
+        "bf": 75,
+        "tf": 10.2,
+        "tw": 6.0,
+        "r1": 11,
+        "mass": 18.0,
+        "area": 2290,
+        "perimeter_ext": 510.0
+      },
+      "200 PFC": {
+        "d": 200,
+        "bf": 75,
+        "tf": 11.4,
+        "tw": 6.3,
+        "r1": 11,
+        "mass": 20.9,
+        "area": 2660,
+        "perimeter_ext": 550.0
+      },
+      "230 PFC": {
+        "d": 230,
+        "bf": 75,
+        "tf": 12.1,
+        "tw": 6.5,
+        "r1": 11,
+        "mass": 25.1,
+        "area": 3200,
+        "perimeter_ext": 610.0
+      },
+      "250 PFC": {
+        "d": 250,
+        "bf": 90,
+        "tf": 12.5,
+        "tw": 7.0,
+        "r1": 11,
+        "mass": 30.0,
+        "area": 3830,
+        "perimeter_ext": 680.0
+      },
+      "300 PFC": {
+        "d": 300,
+        "bf": 90,
+        "tf": 13.6,
+        "tw": 7.5,
+        "r1": 14,
+        "mass": 36.9,
+        "area": 4720,
+        "perimeter_ext": 780.0
+      },
+      "380 PFC": {
+        "d": 380,
+        "bf": 100,
+        "tf": 17.5,
+        "tw": 9.0,
+        "r1": 14,
+        "mass": 55.2,
+        "area": 7040,
+        "perimeter_ext": 960.0
+      }
+    },
+    "SHS": {
+      "25x25x2.5 SHS": {
+        "b": 25,
+        "t": 2.5,
+        "mass": 1.7,
+        "area": 217,
+        "perimeter_ext": 100,
+        "perimeter_int": 80.0,
+        "area_void": 400.0
+      },
+      "35x35x2.5 SHS": {
+        "b": 35,
+        "t": 2.5,
+        "mass": 2.44,
+        "area": 311,
+        "perimeter_ext": 140,
+        "perimeter_int": 120.0,
+        "area_void": 900.0
+      },
+      "40x40x2.5 SHS": {
+        "b": 40,
+        "t": 2.5,
+        "mass": 2.82,
+        "area": 359,
+        "perimeter_ext": 160,
+        "perimeter_int": 140.0,
+        "area_void": 1225.0
+      },
+      "40x40x4.0 SHS": {
+        "b": 40,
+        "t": 4.0,
+        "mass": 4.2,
+        "area": 535,
+        "perimeter_ext": 160,
+        "perimeter_int": 128.0,
+        "area_void": 1024.0
+      },
+      "50x50x2.5 SHS": {
+        "b": 50,
+        "t": 2.5,
+        "mass": 3.56,
+        "area": 454,
+        "perimeter_ext": 200,
+        "perimeter_int": 180.0,
+        "area_void": 2025.0
+      },
+      "50x50x3.0 SHS": {
+        "b": 50,
+        "t": 3.0,
+        "mass": 4.25,
+        "area": 541,
+        "perimeter_ext": 200,
+        "perimeter_int": 176.0,
+        "area_void": 1936.0
+      },
+      "50x50x4.0 SHS": {
+        "b": 50,
+        "t": 4.0,
+        "mass": 5.45,
+        "area": 694,
+        "perimeter_ext": 200,
+        "perimeter_int": 168.0,
+        "area_void": 1764.0
+      },
+      "50x50x5.0 SHS": {
+        "b": 50,
+        "t": 5.0,
+        "mass": 6.59,
+        "area": 839,
+        "perimeter_ext": 200,
+        "perimeter_int": 160.0,
+        "area_void": 1600.0
+      },
+      "65x65x3.0 SHS": {
+        "b": 65,
+        "t": 3.0,
+        "mass": 5.64,
+        "area": 718,
+        "perimeter_ext": 260,
+        "perimeter_int": 236.0,
+        "area_void": 3481.0
+      },
+      "65x65x4.0 SHS": {
+        "b": 65,
+        "t": 4.0,
+        "mass": 7.27,
+        "area": 926,
+        "perimeter_ext": 260,
+        "perimeter_int": 228.0,
+        "area_void": 3249.0
+      },
+      "65x65x5.0 SHS": {
+        "b": 65,
+        "t": 5.0,
+        "mass": 8.9,
+        "area": 1130,
+        "perimeter_ext": 260,
+        "perimeter_int": 220.0,
+        "area_void": 3025.0
+      },
+      "75x75x3.0 SHS": {
+        "b": 75,
+        "t": 3.0,
+        "mass": 6.59,
+        "area": 839,
+        "perimeter_ext": 300,
+        "perimeter_int": 276.0,
+        "area_void": 4761.0
+      },
+      "75x75x4.0 SHS": {
+        "b": 75,
+        "t": 4.0,
+        "mass": 8.59,
+        "area": 1090,
+        "perimeter_ext": 300,
+        "perimeter_int": 268.0,
+        "area_void": 4489.0
+      },
+      "75x75x5.0 SHS": {
+        "b": 75,
+        "t": 5.0,
+        "mass": 10.5,
+        "area": 1340,
+        "perimeter_ext": 300,
+        "perimeter_int": 260.0,
+        "area_void": 4225.0
+      },
+      "75x75x6.0 SHS": {
+        "b": 75,
+        "t": 6.0,
+        "mass": 12.3,
+        "area": 1570,
+        "perimeter_ext": 300,
+        "perimeter_int": 252.0,
+        "area_void": 3969.0
+      },
+      "89x89x3.5 SHS": {
+        "b": 89,
+        "t": 3.5,
+        "mass": 9.34,
+        "area": 1190,
+        "perimeter_ext": 356,
+        "perimeter_int": 328.0,
+        "area_void": 6724.0
+      },
+      "89x89x5.0 SHS": {
+        "b": 89,
+        "t": 5.0,
+        "mass": 12.9,
+        "area": 1640,
+        "perimeter_ext": 356,
+        "perimeter_int": 316.0,
+        "area_void": 6241.0
+      },
+      "89x89x6.0 SHS": {
+        "b": 89,
+        "t": 6.0,
+        "mass": 15.2,
+        "area": 1930,
+        "perimeter_ext": 356,
+        "perimeter_int": 308.0,
+        "area_void": 5929.0
+      },
+      "100x100x3.0 SHS": {
+        "b": 100,
+        "t": 3.0,
+        "mass": 9.06,
+        "area": 1150,
+        "perimeter_ext": 400,
+        "perimeter_int": 376.0,
+        "area_void": 8836.0
+      },
+      "100x100x4.0 SHS": {
+        "b": 100,
+        "t": 4.0,
+        "mass": 11.9,
+        "area": 1510,
+        "perimeter_ext": 400,
+        "perimeter_int": 368.0,
+        "area_void": 8464.0
+      },
+      "100x100x5.0 SHS": {
+        "b": 100,
+        "t": 5.0,
+        "mass": 14.6,
+        "area": 1860,
+        "perimeter_ext": 400,
+        "perimeter_int": 360.0,
+        "area_void": 8100.0
+      },
+      "100x100x6.0 SHS": {
+        "b": 100,
+        "t": 6.0,
+        "mass": 17.3,
+        "area": 2200,
+        "perimeter_ext": 400,
+        "perimeter_int": 352.0,
+        "area_void": 7744.0
+      },
+      "100x100x8.0 SHS": {
+        "b": 100,
+        "t": 8.0,
+        "mass": 22.2,
+        "area": 2820,
+        "perimeter_ext": 400,
+        "perimeter_int": 336.0,
+        "area_void": 7056.0
+      },
+      "125x125x4.0 SHS": {
+        "b": 125,
+        "t": 4.0,
+        "mass": 15.0,
+        "area": 1910,
+        "perimeter_ext": 500,
+        "perimeter_int": 468.0,
+        "area_void": 13689.0
+      },
+      "125x125x5.0 SHS": {
+        "b": 125,
+        "t": 5.0,
+        "mass": 18.5,
+        "area": 2360,
+        "perimeter_ext": 500,
+        "perimeter_int": 460.0,
+        "area_void": 13225.0
+      },
+      "125x125x6.0 SHS": {
+        "b": 125,
+        "t": 6.0,
+        "mass": 22.0,
+        "area": 2800,
+        "perimeter_ext": 500,
+        "perimeter_int": 452.0,
+        "area_void": 12769.0
+      },
+      "125x125x8.0 SHS": {
+        "b": 125,
+        "t": 8.0,
+        "mass": 28.5,
+        "area": 3630,
+        "perimeter_ext": 500,
+        "perimeter_int": 436.0,
+        "area_void": 11881.0
+      },
+      "150x150x4.0 SHS": {
+        "b": 150,
+        "t": 4.0,
+        "mass": 18.1,
+        "area": 2310,
+        "perimeter_ext": 600,
+        "perimeter_int": 568.0,
+        "area_void": 20164.0
+      },
+      "150x150x5.0 SHS": {
+        "b": 150,
+        "t": 5.0,
+        "mass": 22.4,
+        "area": 2860,
+        "perimeter_ext": 600,
+        "perimeter_int": 560.0,
+        "area_void": 19600.0
+      },
+      "150x150x6.0 SHS": {
+        "b": 150,
+        "t": 6.0,
+        "mass": 26.7,
+        "area": 3400,
+        "perimeter_ext": 600,
+        "perimeter_int": 552.0,
+        "area_void": 19044.0
+      },
+      "150x150x8.0 SHS": {
+        "b": 150,
+        "t": 8.0,
+        "mass": 34.9,
+        "area": 4440,
+        "perimeter_ext": 600,
+        "perimeter_int": 536.0,
+        "area_void": 17956.0
+      },
+      "150x150x9.0 SHS": {
+        "b": 150,
+        "t": 9.0,
+        "mass": 38.9,
+        "area": 4950,
+        "perimeter_ext": 600,
+        "perimeter_int": 528.0,
+        "area_void": 17424.0
+      },
+      "200x200x5.0 SHS": {
+        "b": 200,
+        "t": 5.0,
+        "mass": 30.1,
+        "area": 3840,
+        "perimeter_ext": 800,
+        "perimeter_int": 760.0,
+        "area_void": 36100.0
+      },
+      "200x200x6.0 SHS": {
+        "b": 200,
+        "t": 6.0,
+        "mass": 36.0,
+        "area": 4590,
+        "perimeter_ext": 800,
+        "perimeter_int": 752.0,
+        "area_void": 35344.0
+      },
+      "200x200x8.0 SHS": {
+        "b": 200,
+        "t": 8.0,
+        "mass": 47.2,
+        "area": 6010,
+        "perimeter_ext": 800,
+        "perimeter_int": 736.0,
+        "area_void": 33856.0
+      },
+      "200x200x9.0 SHS": {
+        "b": 200,
+        "t": 9.0,
+        "mass": 52.8,
+        "area": 6720,
+        "perimeter_ext": 800,
+        "perimeter_int": 728.0,
+        "area_void": 33124.0
+      },
+      "250x250x6.0 SHS": {
+        "b": 250,
+        "t": 6.0,
+        "mass": 45.3,
+        "area": 5770,
+        "perimeter_ext": 1000,
+        "perimeter_int": 952.0,
+        "area_void": 56644.0
+      },
+      "250x250x8.0 SHS": {
+        "b": 250,
+        "t": 8.0,
+        "mass": 59.6,
+        "area": 7590,
+        "perimeter_ext": 1000,
+        "perimeter_int": 936.0,
+        "area_void": 54756.0
+      },
+      "250x250x9.0 SHS": {
+        "b": 250,
+        "t": 9.0,
+        "mass": 66.7,
+        "area": 8490,
+        "perimeter_ext": 1000,
+        "perimeter_int": 928.0,
+        "area_void": 53824.0
+      },
+      "300x300x8.0 SHS": {
+        "b": 300,
+        "t": 8.0,
+        "mass": 72.0,
+        "area": 9170,
+        "perimeter_ext": 1200,
+        "perimeter_int": 1136.0,
+        "area_void": 80656.0
+      },
+      "300x300x9.0 SHS": {
+        "b": 300,
+        "t": 9.0,
+        "mass": 80.7,
+        "area": 10300,
+        "perimeter_ext": 1200,
+        "perimeter_int": 1128.0,
+        "area_void": 79524.0
+      },
+      "350x350x8.0 SHS": {
+        "b": 350,
+        "t": 8.0,
+        "mass": 84.5,
+        "area": 10800,
+        "perimeter_ext": 1400,
+        "perimeter_int": 1336.0,
+        "area_void": 111556.0
+      },
+      "400x400x10.0 SHS": {
+        "b": 400,
+        "t": 10.0,
+        "mass": 120,
+        "area": 15300,
+        "perimeter_ext": 1600,
+        "perimeter_int": 1520.0,
+        "area_void": 144400.0
+      }
+    },
+    "RHS": {
+      "50x20x2.0 RHS": {
+        "b": 50,
+        "d": 20,
+        "t": 2.0,
+        "mass": 1.99,
+        "area": 254,
+        "perimeter_ext": 140,
+        "perimeter_int": 124.0,
+        "area_void": 736.0
+      },
+      "50x25x2.0 RHS": {
+        "b": 50,
+        "d": 25,
+        "t": 2.0,
+        "mass": 2.17,
+        "area": 277,
+        "perimeter_ext": 150,
+        "perimeter_int": 134.0,
+        "area_void": 966.0
+      },
+      "65x35x2.0 RHS": {
+        "b": 65,
+        "d": 35,
+        "t": 2.0,
+        "mass": 2.98,
+        "area": 380,
+        "perimeter_ext": 200,
+        "perimeter_int": 184.0,
+        "area_void": 1891.0
+      },
+      "75x25x2.5 RHS": {
+        "b": 75,
+        "d": 25,
+        "t": 2.5,
+        "mass": 3.41,
+        "area": 434,
+        "perimeter_ext": 200,
+        "perimeter_int": 180.0,
+        "area_void": 1400.0
+      },
+      "75x50x2.5 RHS": {
+        "b": 75,
+        "d": 50,
+        "t": 2.5,
+        "mass": 4.39,
+        "area": 559,
+        "perimeter_ext": 250,
+        "perimeter_int": 230.0,
+        "area_void": 3150.0
+      },
+      "75x50x3.0 RHS": {
+        "b": 75,
+        "d": 50,
+        "t": 3.0,
+        "mass": 5.19,
+        "area": 661,
+        "perimeter_ext": 250,
+        "perimeter_int": 226.0,
+        "area_void": 3036.0
+      },
+      "100x50x2.5 RHS": {
+        "b": 100,
+        "d": 50,
+        "t": 2.5,
+        "mass": 5.36,
+        "area": 683,
+        "perimeter_ext": 300,
+        "perimeter_int": 280.0,
+        "area_void": 4275.0
+      },
+      "100x50x3.0 RHS": {
+        "b": 100,
+        "d": 50,
+        "t": 3.0,
+        "mass": 6.35,
+        "area": 809,
+        "perimeter_ext": 300,
+        "perimeter_int": 276.0,
+        "area_void": 4136.0
+      },
+      "100x50x4.0 RHS": {
+        "b": 100,
+        "d": 50,
+        "t": 4.0,
+        "mass": 8.23,
+        "area": 1050,
+        "perimeter_ext": 300,
+        "perimeter_int": 268.0,
+        "area_void": 3864.0
+      },
+      "100x50x5.0 RHS": {
+        "b": 100,
+        "d": 50,
+        "t": 5.0,
+        "mass": 10.0,
+        "area": 1280,
+        "perimeter_ext": 300,
+        "perimeter_int": 260.0,
+        "area_void": 3600.0
+      },
+      "100x75x3.0 RHS": {
+        "b": 100,
+        "d": 75,
+        "t": 3.0,
+        "mass": 7.71,
+        "area": 982,
+        "perimeter_ext": 350,
+        "perimeter_int": 326.0,
+        "area_void": 6486.0
+      },
+      "125x75x3.0 RHS": {
+        "b": 125,
+        "d": 75,
+        "t": 3.0,
+        "mass": 8.87,
+        "area": 1130,
+        "perimeter_ext": 400,
+        "perimeter_int": 376.0,
+        "area_void": 8211.0
+      },
+      "125x75x4.0 RHS": {
+        "b": 125,
+        "d": 75,
+        "t": 4.0,
+        "mass": 11.6,
+        "area": 1480,
+        "perimeter_ext": 400,
+        "perimeter_int": 368.0,
+        "area_void": 7839.0
+      },
+      "150x50x3.0 RHS": {
+        "b": 150,
+        "d": 50,
+        "t": 3.0,
+        "mass": 8.87,
+        "area": 1130,
+        "perimeter_ext": 400,
+        "perimeter_int": 376.0,
+        "area_void": 6336.0
+      },
+      "150x50x4.0 RHS": {
+        "b": 150,
+        "d": 50,
+        "t": 4.0,
+        "mass": 11.6,
+        "area": 1480,
+        "perimeter_ext": 400,
+        "perimeter_int": 368.0,
+        "area_void": 5964.0
+      },
+      "150x100x4.0 RHS": {
+        "b": 150,
+        "d": 100,
+        "t": 4.0,
+        "mass": 14.9,
+        "area": 1900,
+        "perimeter_ext": 500,
+        "perimeter_int": 468.0,
+        "area_void": 13064.0
+      },
+      "150x100x5.0 RHS": {
+        "b": 150,
+        "d": 100,
+        "t": 5.0,
+        "mass": 18.4,
+        "area": 2340,
+        "perimeter_ext": 500,
+        "perimeter_int": 460.0,
+        "area_void": 12600.0
+      },
+      "150x100x6.0 RHS": {
+        "b": 150,
+        "d": 100,
+        "t": 6.0,
+        "mass": 21.8,
+        "area": 2780,
+        "perimeter_ext": 500,
+        "perimeter_int": 452.0,
+        "area_void": 12144.0
+      },
+      "200x100x4.0 RHS": {
+        "b": 200,
+        "d": 100,
+        "t": 4.0,
+        "mass": 18.1,
+        "area": 2310,
+        "perimeter_ext": 600,
+        "perimeter_int": 568.0,
+        "area_void": 17664.0
+      },
+      "200x100x5.0 RHS": {
+        "b": 200,
+        "d": 100,
+        "t": 5.0,
+        "mass": 22.4,
+        "area": 2860,
+        "perimeter_ext": 600,
+        "perimeter_int": 560.0,
+        "area_void": 17100.0
+      },
+      "200x100x6.0 RHS": {
+        "b": 200,
+        "d": 100,
+        "t": 6.0,
+        "mass": 26.7,
+        "area": 3400,
+        "perimeter_ext": 600,
+        "perimeter_int": 552.0,
+        "area_void": 16544.0
+      },
+      "250x150x6.0 RHS": {
+        "b": 250,
+        "d": 150,
+        "t": 6.0,
+        "mass": 36.0,
+        "area": 4590,
+        "perimeter_ext": 800,
+        "perimeter_int": 752.0,
+        "area_void": 32844.0
+      },
+      "250x150x8.0 RHS": {
+        "b": 250,
+        "d": 150,
+        "t": 8.0,
+        "mass": 47.2,
+        "area": 6010,
+        "perimeter_ext": 800,
+        "perimeter_int": 736.0,
+        "area_void": 31356.0
+      },
+      "300x200x6.0 RHS": {
+        "b": 300,
+        "d": 200,
+        "t": 6.0,
+        "mass": 45.3,
+        "area": 5770,
+        "perimeter_ext": 1000,
+        "perimeter_int": 952.0,
+        "area_void": 54144.0
+      },
+      "300x200x8.0 RHS": {
+        "b": 300,
+        "d": 200,
+        "t": 8.0,
+        "mass": 59.6,
+        "area": 7590,
+        "perimeter_ext": 1000,
+        "perimeter_int": 936.0,
+        "area_void": 52256.0
+      }
+    },
+    "CHS": {
+      "21.3x2.3 CHS": {
+        "od": 21.3,
+        "t": 2.3,
+        "mass": 1.05,
+        "area": 134,
+        "perimeter_ext": 66.9,
+        "perimeter_int": 52.5,
+        "area_void": 219.0
+      },
+      "26.9x2.3 CHS": {
+        "od": 26.9,
+        "t": 2.3,
+        "mass": 1.36,
+        "area": 173,
+        "perimeter_ext": 84.5,
+        "perimeter_int": 70.1,
+        "area_void": 390.6
+      },
+      "33.7x2.6 CHS": {
+        "od": 33.7,
+        "t": 2.6,
+        "mass": 1.99,
+        "area": 254,
+        "perimeter_ext": 105.9,
+        "perimeter_int": 89.5,
+        "area_void": 637.9
+      },
+      "42.4x2.6 CHS": {
+        "od": 42.4,
+        "t": 2.6,
+        "mass": 2.55,
+        "area": 325,
+        "perimeter_ext": 133.2,
+        "perimeter_int": 116.9,
+        "area_void": 1086.9
+      },
+      "48.3x3.2 CHS": {
+        "od": 48.3,
+        "t": 3.2,
+        "mass": 3.56,
+        "area": 454,
+        "perimeter_ext": 151.7,
+        "perimeter_int": 131.6,
+        "area_void": 1378.9
+      },
+      "60.3x3.2 CHS": {
+        "od": 60.3,
+        "t": 3.2,
+        "mass": 4.51,
+        "area": 574,
+        "perimeter_ext": 189.4,
+        "perimeter_int": 169.3,
+        "area_void": 2281.7
+      },
+      "76.1x3.2 CHS": {
+        "od": 76.1,
+        "t": 3.2,
+        "mass": 5.75,
+        "area": 732,
+        "perimeter_ext": 239.1,
+        "perimeter_int": 219.0,
+        "area_void": 3815.5
+      },
+      "76.1x4.0 CHS": {
+        "od": 76.1,
+        "t": 4.0,
+        "mass": 7.11,
+        "area": 906,
+        "perimeter_ext": 239.1,
+        "perimeter_int": 213.9,
+        "area_void": 3642.4
+      },
+      "88.9x3.2 CHS": {
+        "od": 88.9,
+        "t": 3.2,
+        "mass": 6.76,
+        "area": 861,
+        "perimeter_ext": 279.3,
+        "perimeter_int": 259.2,
+        "area_void": 5345.6
+      },
+      "88.9x4.0 CHS": {
+        "od": 88.9,
+        "t": 4.0,
+        "mass": 8.38,
+        "area": 1070,
+        "perimeter_ext": 279.3,
+        "perimeter_int": 254.2,
+        "area_void": 5140.3
+      },
+      "88.9x5.0 CHS": {
+        "od": 88.9,
+        "t": 5.0,
+        "mass": 10.3,
+        "area": 1310,
+        "perimeter_ext": 279.3,
+        "perimeter_int": 247.9,
+        "area_void": 4889.3
+      },
+      "101.6x3.2 CHS": {
+        "od": 101.6,
+        "t": 3.2,
+        "mass": 7.77,
+        "area": 990,
+        "perimeter_ext": 319.2,
+        "perimeter_int": 299.1,
+        "area_void": 7118.1
+      },
+      "101.6x4.0 CHS": {
+        "od": 101.6,
+        "t": 4.0,
+        "mass": 9.63,
+        "area": 1230,
+        "perimeter_ext": 319.2,
+        "perimeter_int": 294.1,
+        "area_void": 6880.8
+      },
+      "114.3x3.5 CHS": {
+        "od": 114.3,
+        "t": 3.5,
+        "mass": 9.63,
+        "area": 1230,
+        "perimeter_ext": 359.1,
+        "perimeter_int": 337.1,
+        "area_void": 9042.5
+      },
+      "114.3x4.5 CHS": {
+        "od": 114.3,
+        "t": 4.5,
+        "mass": 12.2,
+        "area": 1560,
+        "perimeter_ext": 359.1,
+        "perimeter_int": 330.8,
+        "area_void": 8708.6
+      },
+      "114.3x6.0 CHS": {
+        "od": 114.3,
+        "t": 6.0,
+        "mass": 16.0,
+        "area": 2040,
+        "perimeter_ext": 359.1,
+        "perimeter_int": 321.4,
+        "area_void": 8219.4
+      },
+      "139.7x4.0 CHS": {
+        "od": 139.7,
+        "t": 4.0,
+        "mass": 13.4,
+        "area": 1710,
+        "perimeter_ext": 438.9,
+        "perimeter_int": 413.7,
+        "area_void": 13622.6
+      },
+      "139.7x5.0 CHS": {
+        "od": 139.7,
+        "t": 5.0,
+        "mass": 16.6,
+        "area": 2120,
+        "perimeter_ext": 438.9,
+        "perimeter_int": 407.5,
+        "area_void": 13212.0
+      },
+      "139.7x6.0 CHS": {
+        "od": 139.7,
+        "t": 6.0,
+        "mass": 19.8,
+        "area": 2520,
+        "perimeter_ext": 438.9,
+        "perimeter_int": 401.2,
+        "area_void": 12807.7
+      },
+      "165.1x5.0 CHS": {
+        "od": 165.1,
+        "t": 5.0,
+        "mass": 19.7,
+        "area": 2520,
+        "perimeter_ext": 518.7,
+        "perimeter_int": 487.3,
+        "area_void": 18893.5
+      },
+      "165.1x6.0 CHS": {
+        "od": 165.1,
+        "t": 6.0,
+        "mass": 23.6,
+        "area": 3000,
+        "perimeter_ext": 518.7,
+        "perimeter_int": 481.0,
+        "area_void": 18409.4
+      },
+      "168.3x5.0 CHS": {
+        "od": 168.3,
+        "t": 5.0,
+        "mass": 20.1,
+        "area": 2570,
+        "perimeter_ext": 528.7,
+        "perimeter_int": 497.3,
+        "area_void": 19681.2
+      },
+      "168.3x6.0 CHS": {
+        "od": 168.3,
+        "t": 6.0,
+        "mass": 24.0,
+        "area": 3060,
+        "perimeter_ext": 528.7,
+        "perimeter_int": 491.0,
+        "area_void": 19187.0
+      },
+      "193.7x5.0 CHS": {
+        "od": 193.7,
+        "t": 5.0,
+        "mass": 23.3,
+        "area": 2970,
+        "perimeter_ext": 608.5,
+        "perimeter_int": 577.1,
+        "area_void": 26503.8
+      },
+      "193.7x6.0 CHS": {
+        "od": 193.7,
+        "t": 6.0,
+        "mass": 27.8,
+        "area": 3550,
+        "perimeter_ext": 608.5,
+        "perimeter_int": 570.8,
+        "area_void": 25929.8
+      },
+      "219.1x6.0 CHS": {
+        "od": 219.1,
+        "t": 6.0,
+        "mass": 31.6,
+        "area": 4030,
+        "perimeter_ext": 688.3,
+        "perimeter_int": 650.6,
+        "area_void": 33686.0
+      },
+      "219.1x8.0 CHS": {
+        "od": 219.1,
+        "t": 8.0,
+        "mass": 41.6,
+        "area": 5300,
+        "perimeter_ext": 688.3,
+        "perimeter_int": 638.1,
+        "area_void": 32397.4
+      },
+      "273x6.0 CHS": {
+        "od": 273.0,
+        "t": 6.0,
+        "mass": 39.5,
+        "area": 5040,
+        "perimeter_ext": 857.7,
+        "perimeter_int": 820.0,
+        "area_void": 53502.1
+      },
+      "273x8.0 CHS": {
+        "od": 273.0,
+        "t": 8.0,
+        "mass": 52.3,
+        "area": 6660,
+        "perimeter_ext": 857.7,
+        "perimeter_int": 807.4,
+        "area_void": 51874.8
+      },
+      "323.9x8.0 CHS": {
+        "od": 323.9,
+        "t": 8.0,
+        "mass": 62.3,
+        "area": 7940,
+        "perimeter_ext": 1017.6,
+        "perimeter_int": 967.3,
+        "area_void": 74457.6
+      },
+      "355.6x8.0 CHS": {
+        "od": 355.6,
+        "t": 8.0,
+        "mass": 68.6,
+        "area": 8740,
+        "perimeter_ext": 1117.2,
+        "perimeter_int": 1066.9,
+        "area_void": 90578.5
+      },
+      "406.4x8.0 CHS": {
+        "od": 406.4,
+        "t": 8.0,
+        "mass": 78.6,
+        "area": 10000,
+        "perimeter_ext": 1276.7,
+        "perimeter_int": 1226.5,
+        "area_void": 119704.2
+      },
+      "406.4x10.0 CHS": {
+        "od": 406.4,
+        "t": 10.0,
+        "mass": 97.8,
+        "area": 12500,
+        "perimeter_ext": 1276.7,
+        "perimeter_int": 1213.9,
+        "area_void": 117263.8
+      },
+      "457x8.0 CHS": {
+        "od": 457.0,
+        "t": 8.0,
+        "mass": 88.6,
+        "area": 11300,
+        "perimeter_ext": 1435.7,
+        "perimeter_int": 1385.4,
+        "area_void": 152745.0
+      },
+      "508x8.0 CHS": {
+        "od": 508.0,
+        "t": 8.0,
+        "mass": 98.7,
+        "area": 12600,
+        "perimeter_ext": 1595.9,
+        "perimeter_int": 1545.7,
+        "area_void": 190116.6
+      },
+      "508x10.0 CHS": {
+        "od": 508.0,
+        "t": 10.0,
+        "mass": 123,
+        "area": 15700,
+        "perimeter_ext": 1595.9,
+        "perimeter_int": 1533.1,
+        "area_void": 187037.9
+      }
+    },
+
+    "EA": {
+      "_notes": "Equal leg angles to AS 3679.1. t is actual rolling thickness (may differ from nominal designation). mass from InfraBuild Blue Book. area back-calculated from mass. perimeter_ext = 2*(d+b), simplified for coating estimates.",
+      "200x200x26 EA": { "d": 200, "b": 200, "t": 26.0, "r1": 18, "r2": 5, "mass": 79.3,  "area": 10102, "perimeter_ext": 800 },
+      "200x200x20 EA": { "d": 200, "b": 200, "t": 20.0, "r1": 18, "r2": 5, "mass": 61.5,  "area": 7834,  "perimeter_ext": 800 },
+      "200x200x18 EA": { "d": 200, "b": 200, "t": 18.0, "r1": 18, "r2": 5, "mass": 55.7,  "area": 7096,  "perimeter_ext": 800 },
+      "200x200x16 EA": { "d": 200, "b": 200, "t": 16.0, "r1": 18, "r2": 5, "mass": 50.0,  "area": 6369,  "perimeter_ext": 800 },
+      "200x200x13 EA": { "d": 200, "b": 200, "t": 13.0, "r1": 18, "r2": 5, "mass": 40.0,  "area": 5096,  "perimeter_ext": 800 },
+      "150x150x19 EA": { "d": 150, "b": 150, "t": 19.0, "r1": 13, "r2": 5, "mass": 42.7,  "area": 5439,  "perimeter_ext": 600 },
+      "150x150x16 EA": { "d": 150, "b": 150, "t": 15.8, "r1": 13, "r2": 5, "mass": 36.4,  "area": 4637,  "perimeter_ext": 600 },
+      "150x150x12 EA": { "d": 150, "b": 150, "t": 12.0, "r1": 13, "r2": 5, "mass": 27.7,  "area": 3529,  "perimeter_ext": 600 },
+      "150x150x10 EA": { "d": 150, "b": 150, "t":  9.5, "r1": 13, "r2": 5, "mass": 23.3,  "area": 2968,  "perimeter_ext": 600 },
+      "125x125x16 EA": { "d": 125, "b": 125, "t": 15.8, "r1": 10, "r2": 5, "mass": 29.8,  "area": 3796,  "perimeter_ext": 500 },
+      "125x125x12 EA": { "d": 125, "b": 125, "t": 12.0, "r1": 10, "r2": 5, "mass": 22.8,  "area": 2904,  "perimeter_ext": 500 },
+      "125x125x10 EA": { "d": 125, "b": 125, "t":  9.5, "r1": 10, "r2": 5, "mass": 19.1,  "area": 2433,  "perimeter_ext": 500 },
+      "125x125x8 EA":  { "d": 125, "b": 125, "t":  7.8, "r1": 10, "r2": 5, "mass": 15.3,  "area": 1949,  "perimeter_ext": 500 },
+      "100x100x12 EA": { "d": 100, "b": 100, "t": 12.0, "r1":  8, "r2": 5, "mass": 17.5,  "area": 2229,  "perimeter_ext": 400 },
+      "100x100x10 EA": { "d": 100, "b": 100, "t":  9.5, "r1":  8, "r2": 5, "mass": 14.7,  "area": 1873,  "perimeter_ext": 400 },
+      "100x100x8 EA":  { "d": 100, "b": 100, "t":  7.8, "r1":  8, "r2": 5, "mass": 11.9,  "area": 1516,  "perimeter_ext": 400 },
+      "100x100x6 EA":  { "d": 100, "b": 100, "t":  6.0, "r1":  8, "r2": 5, "mass":  8.97, "area": 1142,  "perimeter_ext": 400 },
+      "90x90x10 EA":   { "d":  90, "b":  90, "t":  9.5, "r1":  8, "r2": 5, "mass": 13.1,  "area": 1669,  "perimeter_ext": 360 },
+      "90x90x8 EA":    { "d":  90, "b":  90, "t":  7.8, "r1":  8, "r2": 5, "mass": 10.6,  "area": 1350,  "perimeter_ext": 360 },
+      "90x90x6 EA":    { "d":  90, "b":  90, "t":  6.0, "r1":  8, "r2": 5, "mass":  8.00, "area": 1019,  "perimeter_ext": 360 },
+      "75x75x10 EA":   { "d":  75, "b":  75, "t":  9.5, "r1":  8, "r2": 3, "mass": 10.8,  "area": 1376,  "perimeter_ext": 300 },
+      "75x75x8 EA":    { "d":  75, "b":  75, "t":  7.8, "r1":  8, "r2": 3, "mass":  8.73, "area": 1112,  "perimeter_ext": 300 },
+      "75x75x6 EA":    { "d":  75, "b":  75, "t":  6.0, "r1":  8, "r2": 3, "mass":  6.63, "area":  844,  "perimeter_ext": 300 },
+      "75x75x5 EA":    { "d":  75, "b":  75, "t":  4.6, "r1":  8, "r2": 3, "mass":  5.55, "area":  707,  "perimeter_ext": 300 },
+      "65x65x10 EA":   { "d":  65, "b":  65, "t":  9.5, "r1":  6, "r2": 3, "mass":  9.27, "area": 1181,  "perimeter_ext": 260 },
+      "65x65x8 EA":    { "d":  65, "b":  65, "t":  7.8, "r1":  6, "r2": 3, "mass":  7.48, "area":  953,  "perimeter_ext": 260 },
+      "65x65x6 EA":    { "d":  65, "b":  65, "t":  6.0, "r1":  6, "r2": 3, "mass":  5.65, "area":  720,  "perimeter_ext": 260 },
+      "65x65x5 EA":    { "d":  65, "b":  65, "t":  4.6, "r1":  6, "r2": 3, "mass":  4.73, "area":  603,  "perimeter_ext": 260 },
+      "55x55x6 EA":    { "d":  55, "b":  55, "t":  6.0, "r1":  6, "r2": 3, "mass":  4.76, "area":  607,  "perimeter_ext": 220 },
+      "55x55x5 EA":    { "d":  55, "b":  55, "t":  4.6, "r1":  6, "r2": 3, "mass":  3.99, "area":  508,  "perimeter_ext": 220 },
+      "50x50x8 EA":    { "d":  50, "b":  50, "t":  7.8, "r1":  6, "r2": 3, "mass":  5.90, "area":  752,  "perimeter_ext": 200 },
+      "50x50x6 EA":    { "d":  50, "b":  50, "t":  6.0, "r1":  6, "r2": 3, "mass":  4.47, "area":  570,  "perimeter_ext": 200 },
+      "50x50x5 EA":    { "d":  50, "b":  50, "t":  4.6, "r1":  6, "r2": 3, "mass":  3.75, "area":  478,  "perimeter_ext": 200 },
+      "50x50x3 EA":    { "d":  50, "b":  50, "t":  3.0, "r1":  5, "r2": 3, "mass":  2.28, "area":  291,  "perimeter_ext": 200 },
+      "45x45x6 EA":    { "d":  45, "b":  45, "t":  6.0, "r1":  5, "r2": 3, "mass":  4.00, "area":  510,  "perimeter_ext": 180 },
+      "45x45x5 EA":    { "d":  45, "b":  45, "t":  4.6, "r1":  5, "r2": 3, "mass":  3.36, "area":  428,  "perimeter_ext": 180 },
+      "45x45x3 EA":    { "d":  45, "b":  45, "t":  3.0, "r1":  6, "r2": 3, "mass":  2.05, "area":  261,  "perimeter_ext": 180 },
+      "40x40x6 EA":    { "d":  40, "b":  40, "t":  6.0, "r1":  5, "r2": 3, "mass":  3.53, "area":  450,  "perimeter_ext": 160 },
+      "40x40x5 EA":    { "d":  40, "b":  40, "t":  4.6, "r1":  5, "r2": 3, "mass":  2.97, "area":  378,  "perimeter_ext": 160 },
+      "40x40x3 EA":    { "d":  40, "b":  40, "t":  3.0, "r1":  5, "r2": 3, "mass":  1.81, "area":  231,  "perimeter_ext": 160 },
+      "30x30x6 EA":    { "d":  30, "b":  30, "t":  6.0, "r1":  5, "r2": 3, "mass":  2.59, "area":  330,  "perimeter_ext": 120 },
+      "30x30x5 EA":    { "d":  30, "b":  30, "t":  4.6, "r1":  5, "r2": 3, "mass":  2.18, "area":  278,  "perimeter_ext": 120 },
+      "30x30x3 EA":    { "d":  30, "b":  30, "t":  3.0, "r1":  5, "r2": 3, "mass":  1.34, "area":  171,  "perimeter_ext": 120 },
+      "25x25x6 EA":    { "d":  25, "b":  25, "t":  6.0, "r1":  5, "r2": 3, "mass":  2.16, "area":  275,  "perimeter_ext": 100 },
+      "25x25x5 EA":    { "d":  25, "b":  25, "t":  4.6, "r1":  5, "r2": 3, "mass":  1.83, "area":  233,  "perimeter_ext": 100 },
+      "25x25x3 EA":    { "d":  25, "b":  25, "t":  3.0, "r1":  5, "r2": 3, "mass":  1.13, "area":  144,  "perimeter_ext": 100 }
+    },
+
+    "UA": {
+      "_notes": "Unequal leg angles to AS 3679.1. d = long leg, b = short leg. t is actual rolling thickness. mass from InfraBuild Blue Book. area back-calculated from mass. perimeter_ext = 2*(d+b).",
+      "150x100x12 UA": { "d": 150, "b": 100, "t": 12.0, "r1": 10, "r2": 5, "mass": 22.5,  "area": 2866,  "perimeter_ext": 500 },
+      "150x100x10 UA": { "d": 150, "b": 100, "t":  9.5, "r1": 10, "r2": 5, "mass": 18.0,  "area": 2293,  "perimeter_ext": 500 },
+      "150x90x16 UA":  { "d": 150, "b":  90, "t": 15.8, "r1": 10, "r2": 5, "mass": 27.9,  "area": 3554,  "perimeter_ext": 480 },
+      "150x90x12 UA":  { "d": 150, "b":  90, "t": 12.0, "r1": 10, "r2": 5, "mass": 21.6,  "area": 2752,  "perimeter_ext": 480 },
+      "150x90x10 UA":  { "d": 150, "b":  90, "t":  9.5, "r1": 10, "r2": 5, "mass": 17.3,  "area": 2204,  "perimeter_ext": 480 },
+      "150x90x8 UA":   { "d": 150, "b":  90, "t":  7.8, "r1":  8, "r2": 5, "mass": 14.2,  "area": 1809,  "perimeter_ext": 480 },
+      "125x75x12 UA":  { "d": 125, "b":  75, "t": 12.0, "r1": 10, "r2": 5, "mass": 17.8,  "area": 2268,  "perimeter_ext": 400 },
+      "125x75x10 UA":  { "d": 125, "b":  75, "t":  9.5, "r1":  8, "r2": 5, "mass": 14.2,  "area": 1809,  "perimeter_ext": 400 },
+      "125x75x8 UA":   { "d": 125, "b":  75, "t":  7.8, "r1":  8, "r2": 5, "mass": 11.8,  "area": 1503,  "perimeter_ext": 400 },
+      "125x75x6 UA":   { "d": 125, "b":  75, "t":  6.0, "r1":  8, "r2": 5, "mass":  9.16, "area": 1167,  "perimeter_ext": 400 },
+      "100x75x10 UA":  { "d": 100, "b":  75, "t":  9.5, "r1":  8, "r2": 5, "mass": 12.3,  "area": 1567,  "perimeter_ext": 350 },
+      "100x75x8 UA":   { "d": 100, "b":  75, "t":  7.8, "r1":  8, "r2": 5, "mass": 10.2,  "area": 1299,  "perimeter_ext": 350 },
+      "100x75x6 UA":   { "d": 100, "b":  75, "t":  6.0, "r1":  8, "r2": 5, "mass":  7.98, "area": 1017,  "perimeter_ext": 350 },
+      "75x50x8 UA":    { "d":  75, "b":  50, "t":  7.8, "r1":  8, "r2": 5, "mass":  7.20, "area":  917,  "perimeter_ext": 250 },
+      "75x50x6 UA":    { "d":  75, "b":  50, "t":  6.0, "r1":  8, "r2": 5, "mass":  5.63, "area":  717,  "perimeter_ext": 250 },
+      "75x50x5 UA":    { "d":  75, "b":  50, "t":  4.6, "r1":  6, "r2": 3, "mass":  4.38, "area":  558,  "perimeter_ext": 250 },
+      "65x50x8 UA":    { "d":  65, "b":  50, "t":  7.8, "r1":  8, "r2": 5, "mass":  6.59, "area":  840,  "perimeter_ext": 230 },
+      "65x50x6 UA":    { "d":  65, "b":  50, "t":  6.0, "r1":  6, "r2": 3, "mass":  5.16, "area":  657,  "perimeter_ext": 230 },
+      "65x50x5 UA":    { "d":  65, "b":  50, "t":  4.6, "r1":  6, "r2": 3, "mass":  4.02, "area":  512,  "perimeter_ext": 230 }
+    }
+  }
+}

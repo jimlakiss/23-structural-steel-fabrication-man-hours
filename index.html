@@ -105,6 +105,7 @@
           <option value="UC">Universal Column (UC)</option>
           <option value="PFC">Parallel Flange Channel (PFC)</option>
           <option value="EA">Equal Angle (EA)</option>
+          <option value="UA">Unequal Angle (UA)</option>
         </optgroup>
         <optgroup label="Welded (AS/NZS 3679.2)">
           <option value="WB">Welded Beam (WB)</option>
@@ -122,22 +123,6 @@
       <select id="secSize" class="picker-select" onchange="onSectionChange()">
         <option value="">— select size —</option>
       </select>
-    </div>
-    <!-- CHS dims -->
-    <div id="chsDims" style="display:none" class="picker-grid">
-      <div class="picker-field"><label>OD</label><input type="number" id="chsOD" class="dim-input" placeholder="mm" oninput="onHollowChange()"></div>
-      <div class="picker-field"><label>Wall t</label><input type="number" id="chsT" class="dim-input" placeholder="mm" oninput="onHollowChange()"></div>
-    </div>
-    <!-- SHS dims -->
-    <div id="shsDims" style="display:none" class="picker-grid">
-      <div class="picker-field"><label>b (side)</label><input type="number" id="shsB" class="dim-input" placeholder="mm" oninput="onHollowChange()"></div>
-      <div class="picker-field"><label>Wall t</label><input type="number" id="shsT" class="dim-input" placeholder="mm" oninput="onHollowChange()"></div>
-    </div>
-    <!-- RHS dims -->
-    <div id="rhsDims" style="display:none" class="picker-grid">
-      <div class="picker-field"><label>Depth d</label><input type="number" id="rhsD" class="dim-input" placeholder="mm" oninput="onHollowChange()"></div>
-      <div class="picker-field"><label>Width b</label><input type="number" id="rhsB" class="dim-input" placeholder="mm" oninput="onHollowChange()"></div>
-      <div class="picker-field"><label>Wall t</label><input type="number" id="rhsT" class="dim-input" placeholder="mm" oninput="onHollowChange()"></div>
     </div>
   </div>
 
@@ -358,6 +343,76 @@ const SECTIONS = {
     ['150x150x10EA',23.0,  0.60], ['150x150x12EA',27.4,  0.60], ['150x150x16EA',35.9,  0.60],
     ['200x200x13EA',49.9,  0.80], ['200x200x16EA',60.7,  0.80], ['200x200x20EA',74.9,  0.80],
   ],
+  UA: [
+    ['65x50x5 UA',  4.02, 0.23], ['65x50x6 UA',  5.16, 0.23], ['65x50x8 UA',  6.59, 0.23],
+    ['75x50x5 UA',  4.38, 0.25], ['75x50x6 UA',  5.63, 0.25], ['75x50x8 UA',  7.20, 0.25],
+    ['100x75x6 UA', 7.98, 0.35], ['100x75x8 UA',10.2,  0.35], ['100x75x10 UA',12.3, 0.35],
+    ['125x75x6 UA', 9.16, 0.40], ['125x75x8 UA',11.8,  0.40], ['125x75x10 UA',14.2, 0.40], ['125x75x12 UA',17.8, 0.40],
+    ['150x90x8 UA',14.2,  0.48], ['150x90x10 UA',17.3, 0.48], ['150x90x12 UA',21.6, 0.48], ['150x90x16 UA',27.9, 0.48],
+    ['150x100x10 UA',18.0,0.50], ['150x100x12 UA',22.5,0.50],
+  ],
+  // ── Hollow sections — data from InfraBuild Blue Book (AS/NZS 1163)
+  // [label, kg/m, SA m²/m, man-hour category]
+  CHS: [
+    ['21.3x2.3 CHS',  1.05,0.0669,'hollow_small'], ['26.9x2.3 CHS',  1.36,0.0845,'hollow_small'],
+    ['33.7x2.6 CHS',  1.99,0.1059,'hollow_small'], ['42.4x2.6 CHS',  2.55,0.1332,'hollow_small'],
+    ['48.3x3.2 CHS',  3.56,0.1517,'hollow_small'], ['60.3x3.2 CHS',  4.51,0.1894,'hollow_small'],
+    ['76.1x3.2 CHS',  5.75,0.2391,'hollow_small'], ['76.1x4.0 CHS',  7.11,0.2391,'hollow_small'],
+    ['88.9x3.2 CHS',  6.76,0.2793,'hollow_small'], ['88.9x4.0 CHS',  8.38,0.2793,'hollow_small'],
+    ['88.9x5.0 CHS',  10.3,0.2793,'hollow_small'],
+    ['101.6x3.2 CHS', 7.77,0.3192,'hollow_large'], ['101.6x4.0 CHS', 9.63,0.3192,'hollow_large'],
+    ['114.3x3.5 CHS', 9.63,0.3591,'hollow_large'], ['114.3x4.5 CHS',12.2, 0.3591,'hollow_large'],
+    ['114.3x6.0 CHS',16.0, 0.3591,'hollow_large'], ['139.7x4.0 CHS',13.4, 0.4389,'hollow_large'],
+    ['139.7x5.0 CHS',16.6, 0.4389,'hollow_large'], ['139.7x6.0 CHS',19.8, 0.4389,'hollow_large'],
+    ['165.1x5.0 CHS',19.7, 0.5187,'hollow_large'], ['165.1x6.0 CHS',23.6, 0.5187,'hollow_large'],
+    ['168.3x5.0 CHS',20.1, 0.5287,'hollow_large'], ['168.3x6.0 CHS',24.0, 0.5287,'hollow_large'],
+    ['193.7x5.0 CHS',23.3, 0.6085,'hollow_large'], ['193.7x6.0 CHS',27.8, 0.6085,'hollow_large'],
+    ['219.1x6.0 CHS',31.6, 0.6883,'hollow_large'], ['219.1x8.0 CHS',41.6, 0.6883,'hollow_large'],
+    ['273x6.0 CHS',  39.5, 0.8577,'hollow_large'], ['273x8.0 CHS',  52.3, 0.8577,'hollow_large'],
+    ['323.9x8.0 CHS',62.3, 1.0176,'hollow_large'], ['355.6x8.0 CHS',68.6, 1.1172,'hollow_large'],
+    ['406.4x8.0 CHS',78.6, 1.2767,'hollow_large'], ['406.4x10.0 CHS',97.8,1.2767,'hollow_large'],
+    ['457x8.0 CHS',  88.6, 1.4357,'hollow_large'], ['508x8.0 CHS',  98.7, 1.5959,'hollow_large'],
+    ['508x10.0 CHS', 123,  1.5959,'hollow_large'],
+  ],
+  SHS: [
+    ['25x25x2.5 SHS', 1.70,0.10,  'hollow_small'], ['35x35x2.5 SHS', 2.44,0.14,  'hollow_small'],
+    ['40x40x2.5 SHS', 2.82,0.16,  'hollow_small'], ['40x40x4.0 SHS', 4.20,0.16,  'hollow_small'],
+    ['50x50x2.5 SHS', 3.56,0.20,  'hollow_small'], ['50x50x3.0 SHS', 4.25,0.20,  'hollow_small'],
+    ['50x50x4.0 SHS', 5.45,0.20,  'hollow_small'], ['50x50x5.0 SHS', 6.59,0.20,  'hollow_small'],
+    ['65x65x3.0 SHS', 5.64,0.26,  'hollow_small'], ['65x65x4.0 SHS', 7.27,0.26,  'hollow_small'],
+    ['65x65x5.0 SHS', 8.90,0.26,  'hollow_small'], ['75x75x3.0 SHS', 6.59,0.30,  'hollow_small'],
+    ['75x75x4.0 SHS', 8.59,0.30,  'hollow_small'], ['75x75x5.0 SHS',10.5, 0.30,  'hollow_small'],
+    ['75x75x6.0 SHS',12.3, 0.30,  'hollow_small'], ['89x89x3.5 SHS', 9.34,0.356, 'hollow_small'],
+    ['89x89x5.0 SHS',12.9, 0.356, 'hollow_small'], ['89x89x6.0 SHS',15.2, 0.356, 'hollow_small'],
+    ['100x100x3.0 SHS', 9.06,0.40,'hollow_large'], ['100x100x4.0 SHS',11.9,0.40, 'hollow_large'],
+    ['100x100x5.0 SHS',14.6,0.40, 'hollow_large'], ['100x100x6.0 SHS',17.3,0.40, 'hollow_large'],
+    ['100x100x8.0 SHS',22.2,0.40, 'hollow_large'], ['125x125x4.0 SHS',15.0,0.50, 'hollow_large'],
+    ['125x125x5.0 SHS',18.5,0.50, 'hollow_large'], ['125x125x6.0 SHS',22.0,0.50, 'hollow_large'],
+    ['125x125x8.0 SHS',28.5,0.50, 'hollow_large'], ['150x150x4.0 SHS',18.1,0.60, 'hollow_large'],
+    ['150x150x5.0 SHS',22.4,0.60, 'hollow_large'], ['150x150x6.0 SHS',26.7,0.60, 'hollow_large'],
+    ['150x150x8.0 SHS',34.9,0.60, 'hollow_large'], ['150x150x9.0 SHS',38.9,0.60, 'hollow_large'],
+    ['200x200x5.0 SHS',30.1,0.80, 'hollow_large'], ['200x200x6.0 SHS',36.0,0.80, 'hollow_large'],
+    ['200x200x8.0 SHS',47.2,0.80, 'hollow_large'], ['200x200x9.0 SHS',52.8,0.80, 'hollow_large'],
+    ['250x250x6.0 SHS',45.3,1.00, 'hollow_large'], ['250x250x8.0 SHS',59.6,1.00, 'hollow_large'],
+    ['250x250x9.0 SHS',66.7,1.00, 'hollow_large'], ['300x300x8.0 SHS',72.0,1.20, 'hollow_large'],
+    ['300x300x9.0 SHS',80.7,1.20, 'hollow_large'], ['350x350x8.0 SHS',84.5,1.40, 'hollow_large'],
+    ['400x400x10.0 SHS',120,1.60, 'hollow_large'],
+  ],
+  RHS: [
+    ['50x20x2.0 RHS',  1.99,0.14, 'hollow_small'], ['50x25x2.0 RHS',  2.17,0.15, 'hollow_small'],
+    ['65x35x2.0 RHS',  2.98,0.20, 'hollow_small'], ['75x25x2.5 RHS',  3.41,0.20, 'hollow_small'],
+    ['75x50x2.5 RHS',  4.39,0.25, 'hollow_small'], ['75x50x3.0 RHS',  5.19,0.25, 'hollow_small'],
+    ['100x50x2.5 RHS', 5.36,0.30, 'hollow_large'], ['100x50x3.0 RHS', 6.35,0.30, 'hollow_large'],
+    ['100x50x4.0 RHS', 8.23,0.30, 'hollow_large'], ['100x50x5.0 RHS',10.0, 0.30, 'hollow_large'],
+    ['100x75x3.0 RHS', 7.71,0.35, 'hollow_large'], ['125x75x3.0 RHS', 8.87,0.40, 'hollow_large'],
+    ['125x75x4.0 RHS',11.6, 0.40, 'hollow_large'], ['150x50x3.0 RHS', 8.87,0.40, 'hollow_large'],
+    ['150x50x4.0 RHS',11.6, 0.40, 'hollow_large'], ['150x100x4.0 RHS',14.9,0.50, 'hollow_large'],
+    ['150x100x5.0 RHS',18.4,0.50, 'hollow_large'], ['150x100x6.0 RHS',21.8,0.50, 'hollow_large'],
+    ['200x100x4.0 RHS',18.1,0.60, 'hollow_large'], ['200x100x5.0 RHS',22.4,0.60, 'hollow_large'],
+    ['200x100x6.0 RHS',26.7,0.60, 'hollow_large'], ['250x150x6.0 RHS',36.0,0.80, 'hollow_large'],
+    ['250x150x8.0 RHS',47.2,0.80, 'hollow_large'], ['300x200x6.0 RHS',45.3,1.00, 'hollow_large'],
+    ['300x200x8.0 RHS',59.6,1.00, 'hollow_large'],
+  ],
 };
 
 // ── Man-hour curves by section category
@@ -401,7 +456,8 @@ const CURVES = {
 
 const TYPE_CATEGORY = {
   UB: 'heavy', UC: 'heavy', WB: 'heavy', WC: 'heavy', PFC: 'heavy',
-  EA: 'light',
+  EA: 'light', UA: 'light',
+  // CHS/SHS/RHS: category is per-section (stored in data[3]), set in onSectionChange
 };
 
 var currentCurve = 'heavy';
@@ -423,24 +479,19 @@ function onTypeChange() {
   var type = document.getElementById('secType').value;
   var sizeField = document.getElementById('sizeField');
   var secSize   = document.getElementById('secSize');
-  ['chsDims','shsDims','rhsDims'].forEach(function(id){ document.getElementById(id).style.display='none'; });
   sizeField.style.display = 'none';
   hideInfoBar();
 
-  if (['CHS','SHS','RHS'].indexOf(type) >= 0) {
-    document.getElementById(type.toLowerCase()+'Dims').style.display = 'flex';
-    clearSectionInputs();
-    // rates set once dims are entered in onHollowChange
-  } else if (SECTIONS[type]) {
+  if (SECTIONS[type]) {
     secSize.innerHTML = '<option value="">— select size —</option>';
     SECTIONS[type].forEach(function(s) {
       var o = document.createElement('option');
-      o.value = JSON.stringify({w: s[1], sa: s[2], label: s[0]});
+      o.value = JSON.stringify({w: s[1], sa: s[2], label: s[0], cat: s[3] || null});
       o.textContent = s[0];
       secSize.appendChild(o);
     });
     sizeField.style.display = 'flex';
-    setCategory(TYPE_CATEGORY[type] || '');
+    if (TYPE_CATEGORY[type]) setCategory(TYPE_CATEGORY[type]);
   } else {
     clearSectionInputs();
     document.getElementById('ratesLabel').textContent = '';
@@ -453,49 +504,9 @@ function onSectionChange() {
   if (!val) { hideInfoBar(); return; }
   var sec = JSON.parse(val);
   applySection(sec.w, sec.sa, sec.label);
+  if (sec.cat) setCategory(sec.cat);   // hollow sections carry their own category
 }
 
-// ── Hollow section computed
-function onHollowChange() {
-  var type = document.getElementById('secType').value;
-  var kgm = 0, sa = 0, label = '';
-  if (type === 'CHS') {
-    var OD = parseFloat(document.getElementById('chsOD').value);
-    var t  = parseFloat(document.getElementById('chsT').value);
-    if (OD > 0 && t > 0 && t < OD/2) {
-      kgm   = Math.PI * (OD - t) * t * 7.85e-3;
-      sa    = Math.PI * OD / 1000;
-      label = OD + ' x ' + t + ' CHS';
-    }
-  } else if (type === 'SHS') {
-    var b = parseFloat(document.getElementById('shsB').value);
-    var t = parseFloat(document.getElementById('shsT').value);
-    if (b > 0 && t > 0 && t < b/2) {
-      kgm   = 4 * (b - t) * t * 7.85e-3;
-      sa    = 4 * b / 1000;
-      label = b + 'x' + b + 'x' + t + ' SHS';
-    }
-  } else if (type === 'RHS') {
-    var d = parseFloat(document.getElementById('rhsD').value);
-    var b = parseFloat(document.getElementById('rhsB').value);
-    var t = parseFloat(document.getElementById('rhsT').value);
-    if (d > 0 && b > 0 && t > 0 && t < Math.min(d,b)/2) {
-      kgm   = 2 * (d + b - 2*t) * t * 7.85e-3;
-      sa    = 2 * (d + b) / 1000;
-      label = d + 'x' + b + 'x' + t + ' RHS';
-    }
-  }
-  if (kgm > 0) {
-    applySection(kgm, sa, label);
-    // Rawlinsons hollow: large ≥100mm CHS OD / SHS side / RHS depth, else small
-    var isLarge = (type === 'CHS' && parseFloat(document.getElementById('chsOD').value) >= 100)
-               || (type === 'SHS' && parseFloat(document.getElementById('shsB').value)  >= 100)
-               || (type === 'RHS' && parseFloat(document.getElementById('rhsD').value)  >= 150);
-    setCategory(isLarge ? 'hollow_large' : 'hollow_small');
-  } else {
-    hideInfoBar();
-  }
-}
 
 function applySection(w, sa, label) {
   baseKgm = w;
