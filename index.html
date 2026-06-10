@@ -29,13 +29,22 @@
   .dim-label { font-size: 11px; color: #888; margin-left: 2px; }
 
   .section-info-bar {
-    display: flex; gap: 20px; flex-wrap: wrap;
-    background: #f0f6ff; border: 1px solid #c5d9f1; border-radius: 3px;
-    padding: 8px 12px; margin-top: 8px; font-size: 13px;
+    display: flex; flex-wrap: wrap;
+    border: 1px solid #4f81bd; border-radius: 3px;
+    overflow: hidden; margin-top: 8px; background: #fff;
   }
-  .info-item { display: flex; flex-direction: column; gap: 1px; }
-  .info-item .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.4px; color: #888; }
-  .info-item .val { font-weight: bold; color: #1a4f8a; }
+  .info-item {
+    flex: 1; min-width: 120px;
+    display: flex; flex-direction: column;
+    padding: 7px 14px 9px;
+    border-right: 1px solid #c5d9f1;
+    background: #f5f9ff;
+  }
+  .info-item:last-child { border-right: none; }
+  .info-item .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: #9aa; margin-bottom: 5px; }
+  .info-item .val-row { display: flex; align-items: baseline; gap: 5px; }
+  .info-item .val { font-weight: bold; color: #1a4f8a; font-size: 15px; }
+  .info-item .uom { font-size: 11px; color: #777; }
 
   /* ── Built-up plates ── */
   .plates-wrap { margin-top: 6px; }
@@ -133,10 +142,22 @@
   </div>
 
   <div id="secInfoBar" class="section-info-bar" style="display:none">
-    <div class="info-item"><span class="lbl">Section</span><span class="val" id="infoLabel">—</span></div>
-    <div class="info-item"><span class="lbl">Mass</span><span class="val" id="infoKgm">—</span> kg/m</div>
-    <div class="info-item"><span class="lbl">Surface area</span><span class="val" id="infoSA">—</span> m²/m</div>
-    <div class="info-item"><span class="lbl">SA / tonne</span><span class="val" id="infoSAt">—</span> m²/t</div>
+    <div class="info-item">
+      <span class="lbl">Section</span>
+      <div class="val-row"><span class="val" id="infoLabel">—</span></div>
+    </div>
+    <div class="info-item">
+      <span class="lbl">Mass</span>
+      <div class="val-row"><span class="val" id="infoKgm">—</span><span class="uom">kg/m</span></div>
+    </div>
+    <div class="info-item">
+      <span class="lbl">Surface area</span>
+      <div class="val-row"><span class="val" id="infoSA">—</span><span class="uom">m²/m</span></div>
+    </div>
+    <div class="info-item">
+      <span class="lbl">SA / tonne</span>
+      <div class="val-row"><span class="val" id="infoSAt">—</span><span class="uom">m²/t</span></div>
+    </div>
   </div>
 
   <!-- ── BUILT-UP PLATES ── -->
