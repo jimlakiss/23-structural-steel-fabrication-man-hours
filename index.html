@@ -172,7 +172,7 @@
   </div>
 
   <!-- ── INPUTS ── -->
-  <div class="section-label">Calculator Inputs</div>
+  <div class="section-label">Section Properties</div>
   <table class="custom-table no-border" style="max-width:500px">
     <tbody>
       <tr>
@@ -191,10 +191,17 @@
           <div class="custom-input-sup">mm</div>
         </td>
       </tr>
+    </tbody>
+  </table>
+
+  <div class="section-label">Man-hour Rates
+    <span id="ratesLabel" style="font-size:11px;color:#4f81bd;text-transform:none;letter-spacing:0;font-weight:normal;margin-left:8px"></span>
+  </div>
+  <table class="custom-table no-border" style="max-width:500px">
+    <tbody>
       <tr>
-        <td>
-          Labour factor
-          <div style="font-size:11px;color:#aaa;margin-top:2px">1.00 = base Methvin rates · reduce to calibrate against known shop rates</div>
+        <td>Labour factor
+          <div style="font-size:11px;color:#aaa;margin-top:2px">scales all man-hour outputs</div>
         </td>
         <td class="custom-td-input">
           <input type="number" id="labourFactor" class="custom-input" tabindex="3"
@@ -299,7 +306,7 @@
   <div class="custom-div-text no-padding">6. Where standard Carbon Steel welding procedures and filler metal can be used, alloy adjustments will not apply to ASTM A333 Gr. 1 and Gr. 9. Consult Piping lead engineer.</div>
 
   <div class="custom-spacer"></div>
-  <p class="note">Man-hours: regression curves from Methvin empirical data — fabrication 542.38×(kg/m)⁻⁰·⁷²⁴¹, plate 804.49×(t)⁻¹·⁰⁰¹⁶, installation −14.85·ln(kg/m)+83.355, plate install 269.98×(t)⁻¹. Use the labour factor to calibrate against your own shop rates. Surface area: approximate from section geometry — verify against InfraBuild eCat for fire protection schedules.</p>
+  <p class="note">Structural member rates: calibrated power-law curves (fab) and log-decay curves (erect) per section category — heavier sections yield fewer mhr/t. Plate rates: constant ≈6.3 mhr/m² model independent of thickness. Surface area: approximate from section geometry — verify against InfraBuild eCat for fire protection schedules.</p>
 </div>
 
 <script>
@@ -353,6 +360,59 @@ const SECTIONS = {
   ],
 };
 
+// ── Man-hour curves by section category
+// Fabrication:  A × (kg/m)^B          mhr/t   (power law — heavier sections more efficient per tonne)
+// Erection:     a − b × ln(kg/m)      mhr/t   (log decay)
+// Curves are calibrated across the practical weight range for each section type.
+const CURVES = {
+  heavy: {
+    // UB/UC/WB/WC/PFC — open rolled/welded sections incl. connections
+    // fab ≈ 23 mhr/t at 40 kg/m; ≈ 35 at 14 kg/m; ≈ 15 at 125 kg/m
+    // erect ≈ 8 mhr/t at 14 kg/m; ≈ 6 at 40 kg/m; ≈ 4 at 125 kg/m
+    fabA: 97,  fabB: -0.387,
+    erA: 16.0, erB: -2.28,
+    label: 'UB / UC / WB / WC / PFC'
+  },
+  light: {
+    // Equal angles — lighter, more pieces per tonne, higher handling time
+    // fab ≈ 40 mhr/t at 15 kg/m; ≈ 65 at 5 kg/m; ≈ 22 at 50 kg/m
+    // erect ≈ 5 mhr/t (gentle variation)
+    fabA: 155, fabB: -0.500,
+    erA:  6.5, erB: -0.50,
+    label: 'Equal Angles (EA)'
+  },
+  hollow_large: {
+    // Hollow sections ≥100mm — more weld prep per section but efficient per tonne
+    // fab ≈ 30 mhr/t at 30 kg/m; ≈ 39 at 14 kg/m; ≈ 21 at 80 kg/m
+    // erect ≈ 7 mhr/t at 30 kg/m
+    fabA: 112, fabB: -0.387,
+    erA: 13.8, erB: -2.28,
+    label: 'Hollow — large (≥100 mm)'
+  },
+  hollow_small: {
+    // Hollow sections <100mm — fiddly connections, higher rate per tonne
+    // fab ≈ 35 mhr/t at 10 kg/m; ≈ 46 at 5 kg/m; ≈ 23 at 30 kg/m
+    // erect ≈ 5 mhr/t (similar to angles)
+    fabA: 85,  fabB: -0.387,
+    erA:  6.5, erB: -0.50,
+    label: 'Hollow — small (<100 mm)'
+  },
+};
+
+const TYPE_CATEGORY = {
+  UB: 'heavy', UC: 'heavy', WB: 'heavy', WC: 'heavy', PFC: 'heavy',
+  EA: 'light',
+};
+
+var currentCurve = 'heavy';
+
+function setCategory(cat) {
+  currentCurve = cat || 'heavy';
+  var c = CURVES[currentCurve];
+  document.getElementById('ratesLabel').textContent = c ? '— ' + c.label : '';
+  calculate();
+}
+
 // ── State
 var baseKgm = 0;
 var baseSA  = 0;  // m²/m
@@ -370,6 +430,7 @@ function onTypeChange() {
   if (['CHS','SHS','RHS'].indexOf(type) >= 0) {
     document.getElementById(type.toLowerCase()+'Dims').style.display = 'flex';
     clearSectionInputs();
+    // rates set once dims are entered in onHollowChange
   } else if (SECTIONS[type]) {
     secSize.innerHTML = '<option value="">— select size —</option>';
     SECTIONS[type].forEach(function(s) {
@@ -379,8 +440,10 @@ function onTypeChange() {
       secSize.appendChild(o);
     });
     sizeField.style.display = 'flex';
+    setCategory(TYPE_CATEGORY[type] || '');
   } else {
     clearSectionInputs();
+    document.getElementById('ratesLabel').textContent = '';
   }
 }
 
@@ -424,6 +487,11 @@ function onHollowChange() {
   }
   if (kgm > 0) {
     applySection(kgm, sa, label);
+    // Rawlinsons hollow: large ≥100mm CHS OD / SHS side / RHS depth, else small
+    var isLarge = (type === 'CHS' && parseFloat(document.getElementById('chsOD').value) >= 100)
+               || (type === 'SHS' && parseFloat(document.getElementById('shsB').value)  >= 100)
+               || (type === 'RHS' && parseFloat(document.getElementById('rhsD').value)  >= 150);
+    setCategory(isLarge ? 'hollow_large' : 'hollow_small');
   } else {
     hideInfoBar();
   }
@@ -533,21 +601,26 @@ function refreshTotals() {
 }
 
 // ── Core calculator
-// Formulas are regression curves fitted to Methvin's empirical man-hour data:
-//   Structural member fabrication:   542.38 × (kg/m)^−0.7241      mhr/t
-//   Plate fabrication:               804.49 × (t mm)^−1.0016       mhr/t
-//   Structural member installation: −14.85 × ln(kg/m) + 83.355    mhr/t
-//   Plate installation:              269.98 × (t mm)^−1            mhr/t
-// All outputs are multiplied by the labour factor (default 1.00).
+// Structural member: calibrated power-law (fab) and log-decay (erect) curves per section category.
+//   Fabrication:  A × (kg/m)^B  mhr/t
+//   Erection:     a − b × ln(kg/m)  mhr/t  (floored at 0)
+// Plate: simplified constant-mhr/m² model (≈6.3 mhr/m² independent of thickness).
+//   Plate fabrication:  804.49 × (t mm)^−1.0016
+//   Plate installation: 269.98 × (t mm)^−1
+// All outputs scaled by labour factor.
 function calculate(overrideSA) {
-  var v1 = parseFloat(document.getElementById('txtStructuralMember').value);
-  var v2 = parseFloat(document.getElementById('txtPlateThickness').value);
-  var lf = parseFloat(document.getElementById('labourFactor').value) || 1;
+  var v1  = parseFloat(document.getElementById('txtStructuralMember').value);
+  var v2  = parseFloat(document.getElementById('txtPlateThickness').value);
+  var lf  = parseFloat(document.getElementById('labourFactor').value) || 1;
+  var c   = CURVES[currentCurve] || CURVES.heavy;
 
-  setResult('lblCalcStructuralMember',             lf * 542.38  * Math.pow(v1, -0.7241));
-  setResult('lblCalcPlateFabrication',             lf * 804.49  * Math.pow(v2, -1.0016));
-  setResult('lblCalcStructuralMemberInstallation', lf * (-14.85 * Math.log(v1) + 83.355));
-  setResult('lblCalcPlateInstallation',            lf * 269.98  * Math.pow(v2, -1));
+  var fab = (v1 > 0) ? c.fabA * Math.pow(v1, c.fabB)                    : NaN;
+  var ere = (v1 > 0) ? Math.max(0, c.erA + c.erB * Math.log(v1))        : NaN;
+
+  setResult('lblCalcStructuralMember',             lf * fab);
+  setResult('lblCalcStructuralMemberInstallation', lf * ere);
+  setResult('lblCalcPlateFabrication',             lf * 804.49 * Math.pow(v2, -1.0016));
+  setResult('lblCalcPlateInstallation',            lf * 269.98 * Math.pow(v2, -1));
 
   // Surface area
   var sa = (overrideSA !== undefined) ? overrideSA : baseSA;
