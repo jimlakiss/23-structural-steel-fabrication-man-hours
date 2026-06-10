@@ -519,19 +519,17 @@ function refreshTotals() {
   var totalSA = baseSA + plateSA;
 
   var row = document.getElementById('totalKgmRow');
-  if (plates.length > 0 && baseKgm > 0) {
-    document.getElementById('totalKgmVal').textContent = fmt(totalKgm);
-    document.getElementById('totalSAVal').textContent  = totalSA.toFixed(3);
+  if (plates.length > 0) {
+    document.getElementById('totalKgmVal').textContent = totalKgm > 0 ? fmt(totalKgm) : '—';
+    document.getElementById('totalSAVal').textContent  = totalSA > 0 ? totalSA.toFixed(3) : '—';
     row.style.display = 'block';
+    if (totalKgm > 0) document.getElementById('txtStructuralMember').value = fmt(totalKgm);
+    calculate(totalSA);
   } else {
     row.style.display = 'none';
+    if (baseKgm > 0) document.getElementById('txtStructuralMember').value = fmt(baseKgm);
+    calculate(baseSA);
   }
-
-  // Push computed total into the kg/m input and surface area state
-  if (baseKgm > 0) {
-    document.getElementById('txtStructuralMember').value = fmt(totalKgm);
-  }
-  calculate(totalSA);
 }
 
 // ── Core calculator
