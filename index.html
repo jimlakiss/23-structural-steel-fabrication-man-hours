@@ -5,137 +5,160 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Structural Steel Man-Hours Calculator</title>
 <style>
+  *, *::before, *::after { box-sizing: border-box; }
   body {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    color: #333;
-    background: #f5f5f5;
-    margin: 0;
-    padding: 20px;
+    font-size: 14px; color: #333; background: #f0f2f5; margin: 0; padding: 20px;
   }
-  h1 {
-    font-size: 20px;
-    color: #2c3e50;
-    margin-bottom: 6px;
+  h1 { font-size: 20px; color: #2c3e50; margin: 0 0 4px; }
+  .subtitle { color: #777; font-size: 12px; margin: 0 0 20px; }
+  .container { max-width: 780px; margin: 0 auto; background: #fff; border-radius: 6px; padding: 24px; box-shadow: 0 1px 6px rgba(0,0,0,0.12); }
+  .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; color: #999; margin: 20px 0 8px; border-bottom: 1px solid #e8e8e8; padding-bottom: 4px; }
+
+  /* ── Section picker ── */
+  .picker-grid { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 4px; }
+  .picker-field { display: flex; flex-direction: column; gap: 3px; }
+  .picker-field label { font-size: 11px; color: #888; }
+  .picker-select, .dim-input {
+    height: 32px; border: 1px solid #ced4da; border-radius: 3px; padding: 0 8px;
+    font-size: 13px; color: #333; background: #fff; outline: none;
   }
-  .subtitle {
-    color: #666;
-    font-size: 12px;
-    margin-bottom: 20px;
+  .picker-select:focus, .dim-input:focus { border-color: #4f81bd; box-shadow: 0 0 0 2px rgba(79,129,189,0.2); }
+  .picker-select { min-width: 200px; }
+  .dim-input { width: 90px; }
+  .dim-label { font-size: 11px; color: #888; margin-left: 2px; }
+
+  .section-info-bar {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    background: #f0f6ff; border: 1px solid #c5d9f1; border-radius: 3px;
+    padding: 8px 12px; margin-top: 8px; font-size: 13px;
   }
-  .container {
-    max-width: 760px;
-    margin: 0 auto;
-    background: #fff;
-    border-radius: 4px;
-    padding: 24px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
-  }
-  .custom-table {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  .custom-table td,
-  .custom-table th {
-    border: 1px solid #4f81bd;
-    padding: 4px 8px;
-    font-size: 13px;
-  }
-  .custom-table th {
-    padding-top: 4px;
-    padding-bottom: 4px;
-    text-align: left;
-    background-color: #4f81bd;
-    color: white;
-  }
-  .custom-table tr:nth-child(even) { background-color: #f2f2f2; }
-  .custom-table tr:hover { background-color: #ddd; }
-  .custom-table.no-border td { border: 0; background-color: #fff; }
-  .custom-table.no-border tr:nth-child(even) { background-color: #fff; }
-  .custom-table.no-border tr:hover { background-color: #fff; }
+  .info-item { display: flex; flex-direction: column; gap: 1px; }
+  .info-item .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.4px; color: #888; }
+  .info-item .val { font-weight: bold; color: #1a4f8a; }
+
+  /* ── Built-up plates ── */
+  .plates-wrap { margin-top: 6px; }
+  .plate-row { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; }
+  .plate-row input { width: 90px; height: 30px; border: 1px solid #ced4da; border-radius: 3px; padding: 0 8px; font-size: 13px; outline: none; }
+  .plate-row input:focus { border-color: #4f81bd; }
+  .plate-row .kgm-badge { font-size: 12px; color: #555; min-width: 70px; }
+  .plate-row .btn-remove { background: none; border: none; color: #c0392b; font-size: 16px; cursor: pointer; padding: 0 4px; line-height: 1; }
+  .btn-add { background: #4f81bd; color: #fff; border: none; border-radius: 3px; padding: 6px 12px; font-size: 12px; cursor: pointer; margin-top: 4px; }
+  .btn-add:hover { background: #3a6fa0; }
+  .total-kgm { margin-top: 8px; font-size: 13px; color: #333; }
+  .total-kgm strong { color: #1a4f8a; }
+
+  /* ── Main inputs ── */
+  .custom-table { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; border-collapse: collapse; width: 100%; }
+  .custom-table td, .custom-table th { border: 1px solid #4f81bd; padding: 4px 8px; font-size: 13px; }
+  .custom-table th { padding: 4px 8px; text-align: left; background: #4f81bd; color: #fff; }
+  .custom-table tr:nth-child(even) { background: #f2f2f2; }
+  .custom-table tr:hover { background: #ddd; }
+  .custom-table.no-border td { border: 0; background: #fff !important; }
   .custom-spacer { padding: 10px; }
   .custom-input {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    margin: 2px !important;
-    min-height: 30px !important;
-    padding: 6px 48px 6px 10px !important;
-    font-size: 13px !important;
-    font-family: monospace;
-    border-radius: 2px;
+    display: block; width: 100%; color: #495057; background: #fff;
+    border: 1px solid #ced4da; margin: 2px !important; min-height: 30px !important;
+    padding: 6px 48px 6px 10px !important; font-size: 13px !important; font-family: monospace; border-radius: 2px;
   }
-  .custom-input:focus {
-    outline: none;
-    border-color: #4f81bd;
-    box-shadow: 0 0 0 2px rgba(79,129,189,0.25);
-  }
+  .custom-input:focus { outline: none; border-color: #4f81bd; box-shadow: 0 0 0 2px rgba(79,129,189,0.2); }
   .custom-input-sup {
-    position: absolute;
-    right: 7px;
-    top: 50%;
-    margin-top: -14px;
-    height: 28px;
-    background-color: #e9ecef;
-    width: 38px;
-    box-sizing: border-box;
-    text-align: center;
-    line-height: 29px;
-    font-weight: bold;
-    border-left: 1px solid #dad9d9;
-    font-size: 11px;
-    color: #555;
+    position: absolute; right: 7px; top: 50%; margin-top: -14px; height: 28px;
+    background: #e9ecef; width: 38px; text-align: center; line-height: 29px;
+    font-weight: bold; border-left: 1px solid #dad9d9; font-size: 11px; color: #555;
   }
-  .custom-td-input {
-    position: relative;
-    text-align: right;
-    width: 150px;
-  }
+  .custom-td-input { position: relative; text-align: right; width: 150px; }
   .t-right { text-align: right; }
   .t-center { text-align: center !important; }
-  .custom-div-text {
-    color: #505050;
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    font-size: 13px;
-    padding: 12px 8px 4px 2px;
-    line-height: 20px;
-  }
+  .custom-div-text { color: #505050; font-size: 13px; padding: 12px 8px 4px 2px; line-height: 20px; }
   .custom-div-text strong { font-size: 15px; }
   .no-padding { padding-top: 4px; padding-bottom: 2px; }
-  .section-label {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #888;
-    margin: 18px 0 6px;
-    border-bottom: 1px solid #e0e0e0;
-    padding-bottom: 4px;
-  }
-  .result-value {
-    font-weight: bold;
-    color: #1a5276;
-    font-size: 14px;
-  }
+  .result-value { font-weight: bold; color: #1a5276; font-size: 14px; }
+
+  .note { font-size: 11px; color: #aaa; margin-top: 16px; }
 </style>
 </head>
 <body>
 <div class="container">
   <h1>Structural Steel Fabrication Man-Hours</h1>
-  <p class="subtitle">Enter values below to calculate fabrication and erection man-hours per tonne.</p>
+  <p class="subtitle">Australian standard sections (AS/NZS 3679.1/2 &amp; 1163) · surface area approximate from section geometry</p>
 
-  <div class="section-label">Inputs</div>
+  <!-- ── SECTION PICKER ── -->
+  <div class="section-label">Section Lookup</div>
+  <div class="picker-grid">
+    <div class="picker-field">
+      <label>Type</label>
+      <select id="secType" class="picker-select" onchange="onTypeChange()">
+        <option value="">— select type —</option>
+        <optgroup label="Hot Rolled Open (AS/NZS 3679.1)">
+          <option value="UB">Universal Beam (UB)</option>
+          <option value="UC">Universal Column (UC)</option>
+          <option value="PFC">Parallel Flange Channel (PFC)</option>
+          <option value="EA">Equal Angle (EA)</option>
+        </optgroup>
+        <optgroup label="Welded (AS/NZS 3679.2)">
+          <option value="WB">Welded Beam (WB)</option>
+          <option value="WC">Welded Column (WC)</option>
+        </optgroup>
+        <optgroup label="Hollow (AS/NZS 1163)">
+          <option value="CHS">Circular Hollow Section (CHS)</option>
+          <option value="SHS">Square Hollow Section (SHS)</option>
+          <option value="RHS">Rectangular Hollow Section (RHS)</option>
+        </optgroup>
+      </select>
+    </div>
+    <div class="picker-field" id="sizeField" style="display:none">
+      <label>Size</label>
+      <select id="secSize" class="picker-select" onchange="onSectionChange()">
+        <option value="">— select size —</option>
+      </select>
+    </div>
+    <!-- CHS dims -->
+    <div id="chsDims" style="display:none" class="picker-grid">
+      <div class="picker-field"><label>OD</label><input type="number" id="chsOD" class="dim-input" placeholder="mm" oninput="onHollowChange()"></div>
+      <div class="picker-field"><label>Wall t</label><input type="number" id="chsT" class="dim-input" placeholder="mm" oninput="onHollowChange()"></div>
+    </div>
+    <!-- SHS dims -->
+    <div id="shsDims" style="display:none" class="picker-grid">
+      <div class="picker-field"><label>b (side)</label><input type="number" id="shsB" class="dim-input" placeholder="mm" oninput="onHollowChange()"></div>
+      <div class="picker-field"><label>Wall t</label><input type="number" id="shsT" class="dim-input" placeholder="mm" oninput="onHollowChange()"></div>
+    </div>
+    <!-- RHS dims -->
+    <div id="rhsDims" style="display:none" class="picker-grid">
+      <div class="picker-field"><label>Depth d</label><input type="number" id="rhsD" class="dim-input" placeholder="mm" oninput="onHollowChange()"></div>
+      <div class="picker-field"><label>Width b</label><input type="number" id="rhsB" class="dim-input" placeholder="mm" oninput="onHollowChange()"></div>
+      <div class="picker-field"><label>Wall t</label><input type="number" id="rhsT" class="dim-input" placeholder="mm" oninput="onHollowChange()"></div>
+    </div>
+  </div>
+
+  <div id="secInfoBar" class="section-info-bar" style="display:none">
+    <div class="info-item"><span class="lbl">Section</span><span class="val" id="infoLabel">—</span></div>
+    <div class="info-item"><span class="lbl">Mass</span><span class="val" id="infoKgm">—</span> kg/m</div>
+    <div class="info-item"><span class="lbl">Surface area</span><span class="val" id="infoSA">—</span> m²/m</div>
+    <div class="info-item"><span class="lbl">SA / tonne</span><span class="val" id="infoSAt">—</span> m²/t</div>
+  </div>
+
+  <!-- ── BUILT-UP PLATES ── -->
+  <div class="section-label">Built-up Plates <span style="font-size:11px;color:#bbb;text-transform:none;letter-spacing:0">(added to section mass)</span></div>
+  <div class="plates-wrap">
+    <div id="platesList"></div>
+    <button class="btn-add" onclick="addPlate()">+ Add plate</button>
+    <div class="total-kgm" id="totalKgmRow" style="display:none">
+      Total section + plates: <strong id="totalKgmVal">—</strong> kg/m
+      &nbsp;|&nbsp; Total SA: <strong id="totalSAVal">—</strong> m²/m
+    </div>
+  </div>
+
+  <!-- ── INPUTS ── -->
+  <div class="section-label">Calculator Inputs</div>
   <table class="custom-table no-border" style="max-width:500px">
     <tbody>
       <tr>
         <td>Structural member</td>
         <td class="custom-td-input">
           <input type="number" id="txtStructuralMember" class="custom-input" tabindex="1"
-                 oninput="calculate()" autofocus placeholder="e.g. 50">
+                 oninput="onManualInput()" autofocus placeholder="kg/m">
           <div class="custom-input-sup">kg/m</div>
         </td>
       </tr>
@@ -143,60 +166,46 @@
         <td>Plate thickness</td>
         <td class="custom-td-input">
           <input type="number" id="txtPlateThickness" class="custom-input" tabindex="2"
-                 oninput="calculate()" placeholder="e.g. 10">
+                 oninput="calculate()" placeholder="mm">
           <div class="custom-input-sup">mm</div>
         </td>
       </tr>
     </tbody>
   </table>
 
-  <div class="custom-spacer"></div>
-
+  <!-- ── RESULTS ── -->
   <div class="section-label">Results</div>
   <table class="custom-table" style="max-width:500px">
     <tbody>
       <tr><th colspan="3">Fabrication man-hours</th></tr>
-      <tr>
-        <td>Structural member</td>
-        <td class="t-right result-value"><span id="lblCalcStructuralMember">—</span></td>
-        <td>mhr/t</td>
-      </tr>
-      <tr>
-        <td>Plate fabrication</td>
-        <td class="t-right result-value"><span id="lblCalcPlateFabrication">—</span></td>
-        <td>mhr/t</td>
-      </tr>
+      <tr><td>Structural member</td><td class="t-right result-value"><span id="lblCalcStructuralMember">—</span></td><td>mhr/t</td></tr>
+      <tr><td>Plate fabrication</td><td class="t-right result-value"><span id="lblCalcPlateFabrication">—</span></td><td>mhr/t</td></tr>
     </tbody>
   </table>
-
   <div class="custom-spacer"></div>
-
   <table class="custom-table" style="max-width:500px">
     <tbody>
       <tr><th colspan="3">Erection / installation man-hours</th></tr>
-      <tr>
-        <td>Structural member installation</td>
-        <td class="t-right result-value"><span id="lblCalcStructuralMemberInstallation">—</span></td>
-        <td>mhr/t</td>
-      </tr>
-      <tr>
-        <td>Plate installation</td>
-        <td class="t-right result-value"><span id="lblCalcPlateInstallation">—</span></td>
-        <td>mhr/t</td>
-      </tr>
+      <tr><td>Structural member installation</td><td class="t-right result-value"><span id="lblCalcStructuralMemberInstallation">—</span></td><td>mhr/t</td></tr>
+      <tr><td>Plate installation</td><td class="t-right result-value"><span id="lblCalcPlateInstallation">—</span></td><td>mhr/t</td></tr>
+    </tbody>
+  </table>
+  <div class="custom-spacer"></div>
+  <table class="custom-table" style="max-width:500px" id="saResultTable">
+    <tbody>
+      <tr><th colspan="3">Surface area</th></tr>
+      <tr><td>Per linear metre</td><td class="t-right result-value"><span id="lblSAm">—</span></td><td>m²/m</td></tr>
+      <tr><td>Per tonne</td><td class="t-right result-value"><span id="lblSAt">—</span></td><td>m²/t</td></tr>
     </tbody>
   </table>
 
   <div class="custom-spacer"></div>
   <div class="custom-spacer"></div>
 
-  <div>
-    <div class="custom-div-text no-padding"><strong>Alloy Man-hour Adjustments</strong></div>
-    <div class="custom-div-text no-padding">Material Classification Groups</div>
-  </div>
-
+  <!-- ── ALLOY TABLES (unchanged) ── -->
+  <div class="custom-div-text no-padding"><strong>Alloy Man-hour Adjustments</strong></div>
+  <div class="custom-div-text no-padding">Material Classification Groups</div>
   <div class="custom-spacer"></div>
-
   <table class="custom-table">
     <tbody>
       <tr>
@@ -225,24 +234,22 @@
       </tr>
     </tbody>
   </table>
-
   <div class="custom-spacer"></div>
-
   <table class="custom-table">
     <tbody>
       <tr><th>GROUP 1</th><td>&nbsp;</td><th>GROUP 4</th><th>GROUP 8</th></tr>
-      <tr><td>ASTM A335-P1</td><td>.50% Moly</td><td>Stainless Steels</td><td>Stainless Steels — Types 317, 321, 347</td></tr>
+      <tr><td>ASTM A335-P1</td><td>.50% Moly</td><td>Stainless Steels</td><td>Types 317, 321, 347</td></tr>
       <tr><td>ASTM A335-P2</td><td>.50–.70% Chrome</td><td>Types 304, 309, 310, 316, Duplex</td><td>Copper-Nickel</td></tr>
-      <tr><td>ASTM A335-P12</td><td>.85–1.10% Chrome</td><td>(including "L" &amp; "H" Grades)</td><td>Monel</td></tr>
+      <tr><td>ASTM A335-P12</td><td>.85–1.10% Chrome</td><td>(incl. "L" &amp; "H" Grades)</td><td>Monel</td></tr>
       <tr><td>ASTM A335-P11</td><td>1.05–1.45% Chrome</td><td>&nbsp;</td><td>Inconel</td></tr>
       <tr><td>ASTM A335-P3</td><td>1.50–2.00% Chrome</td><th>GROUP 5</th><td>Incoloy</td></tr>
       <tr><td>&nbsp;</td><td>&nbsp;</td><td>Copper and Brass</td><td>Alloy 20</td></tr>
       <tr><th>GROUP 2</th><td>&nbsp;</td><td>&nbsp;</td><td>HF Modified</td></tr>
       <tr><td>ASTM A335-P3b</td><td>1.75–2.25% Chrome</td><th>GROUP 6</th><td>&nbsp;</td></tr>
-      <tr><td>ASTM A335-P22</td><td>2.00–2.50% Chrome</td><td>Low Temp Carbon Steel (see Note 5)</td><th>GROUP 9</th></tr>
-      <tr><td>ASTM A335-P21</td><td>2.75–3.25% Chrome</td><td>ASTM A333 Gr. 1 (see Note 6)</td><td>Aluminium</td></tr>
+      <tr><td>ASTM A335-P22</td><td>2.00–2.50% Chrome</td><td>Low Temp Carbon Steel (Note 5)</td><th>GROUP 9</th></tr>
+      <tr><td>ASTM A335-P21</td><td>2.75–3.25% Chrome</td><td>ASTM A333 Gr. 1 (Note 6)</td><td>Aluminium</td></tr>
       <tr><td>ASTM A335-P5.b.c</td><td>4.00–6.00% Chrome</td><td>ASTM A333 Gr. 4</td><td>&nbsp;</td></tr>
-      <tr><td>&nbsp;</td><td>&nbsp;</td><td>ASTM A333 Gr. 9 (see Note 6)</td><td>&nbsp;</td></tr>
+      <tr><td>&nbsp;</td><td>&nbsp;</td><td>ASTM A333 Gr. 9 (Note 6)</td><td>&nbsp;</td></tr>
       <tr><th>GROUP 3</th><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
       <tr><td>ASTM A335-P7</td><td>6.00–8.00% Chrome</td><th>GROUP 7</th><td>&nbsp;</td></tr>
       <tr><td>ASTM A335-P9</td><td>8.00–10.00% Chrome</td><td>Hastelloy</td><td>&nbsp;</td></tr>
@@ -250,23 +257,248 @@
       <tr><td>ASTM A333 Gr. 3</td><td>3.50% Nickel</td><td>99% Nickel</td><td>&nbsp;</td></tr>
     </tbody>
   </table>
-
   <div class="custom-spacer"></div>
-
   <div class="custom-div-text no-padding"><strong>ALLOY MATERIAL ADJUSTMENT NOTES</strong></div>
   <div class="custom-div-text no-padding">1. Apply the appropriate multiplier above to the corresponding Carbon Steel labor operation.</div>
   <div class="custom-div-text no-padding">2. Adjustments shown above apply to all wall thicknesses.</div>
   <div class="custom-div-text no-padding">3. The molybdenum content in alloys listed in Groups 1 through 3 inclusive shall not exceed 1%.</div>
   <div class="custom-div-text no-padding">4. Adjustments for alloys other than those listed above will have to be researched. Consult Piping lead engineer.</div>
   <div class="custom-div-text no-padding">5. Low Temp Carbon Steel type ASTM-A333 Gr. 6 is standard Carbon Steel material and alloy adjustments do not apply.</div>
-  <div class="custom-div-text no-padding">6. Where standard Carbon Steel welding procedures and filler metal can be used, alloy adjustments will not apply to Low Temp Carbon Steel types ASTM A333 Gr. 1 and ASTM A333 Gr. 9. Consult Piping lead engineer.</div>
+  <div class="custom-div-text no-padding">6. Where standard Carbon Steel welding procedures and filler metal can be used, alloy adjustments will not apply to ASTM A333 Gr. 1 and Gr. 9. Consult Piping lead engineer.</div>
 
   <div class="custom-spacer"></div>
-  <div style="color:#aaa;font-size:11px;text-align:right">Source: methvin.org — offline calculator</div>
+  <p class="note">Man-hours: methvin.org formulas. Surface area: approximate from section geometry — verify against InfraBuild eCat for fire protection schedules.</p>
 </div>
 
 <script>
-function calculate() {
+// ── Section data: [designation, kg/m, SA m²/m]
+// SA is approximate from (4·bf + 2·(d−2·tf)) / 1000 × 0.93
+// Open-section SA values are estimates; hollow-section SA is exact from outer perimeter.
+const SECTIONS = {
+  UB: [
+    ['150UB14.0', 14.0, 0.54], ['150UB18.0', 18.0, 0.55],
+    ['180UB16.1', 16.1, 0.64], ['180UB18.1', 18.1, 0.64], ['180UB22.2', 22.2, 0.65],
+    ['200UB18.2', 18.2, 0.84], ['200UB22.3', 22.3, 0.84], ['200UB25.4', 25.4, 0.84], ['200UB29.8', 29.8, 0.85],
+    ['250UB25.7', 25.7, 0.90], ['250UB31.4', 31.4, 0.99], ['250UB37.3', 37.3, 1.00],
+    ['310UB32.0', 32.0, 1.10], ['310UB40.4', 40.4, 1.17], ['310UB46.2', 46.2, 1.17],
+    ['360UB44.7', 44.7, 1.27], ['360UB50.7', 50.7, 1.28], ['360UB56.7', 56.7, 1.29],
+    ['410UB53.7', 53.7, 1.39], ['410UB59.7', 59.7, 1.40],
+    ['460UB67.1', 67.1, 1.53], ['460UB74.6', 74.6, 1.54], ['460UB82.1', 82.1, 1.55],
+    ['530UB82.0', 82.0, 1.74], ['530UB92.4', 92.4, 1.75],
+    ['610UB101',  101,  1.95], ['610UB113',  113,  1.96], ['610UB125',  125,  1.97],
+  ],
+  UC: [
+    ['100UC14.8', 14.8, 0.55],
+    ['150UC23.4', 23.4, 0.83], ['150UC30.0', 30.0, 0.84], ['150UC37.2', 37.2, 0.85],
+    ['200UC46.2', 46.2, 1.11], ['200UC52.2', 52.2, 1.12], ['200UC59.5', 59.5, 1.14],
+    ['250UC72.9', 72.9, 1.40], ['250UC89.5', 89.5, 1.42], ['250UC107',  107,  1.44],
+    ['310UC96.8', 96.8, 1.69], ['310UC118',  118,  1.71], ['310UC137',  137,  1.73],
+    ['310UC158',  158,  1.75], ['310UC179',  179,  1.77], ['310UC198',  198,  1.78],
+  ],
+  WB: [
+    ['500WB89',  89,  1.66], ['500WB115', 115, 1.67], ['500WB146', 146, 1.68], ['500WB192', 192, 1.69],
+    ['700WB115', 115, 2.01], ['700WB150', 150, 2.03], ['700WB173', 173, 2.40],
+    ['700WB220', 220, 2.41], ['700WB265', 265, 2.42],
+    ['900WB175', 175, 2.57], ['900WB218', 218, 2.58], ['900WB257', 257, 2.75], ['900WB282', 282, 2.76],
+  ],
+  WC: [
+    ['250WC73',  73,  1.40], ['250WC89',  89,  1.40], ['250WC101', 101, 1.43],
+    ['350WC197', 197, 1.93], ['350WC230', 230, 1.95], ['350WC258', 258, 1.96], ['350WC280', 280, 1.98],
+  ],
+  PFC: [
+    ['75PFC',   5.92, 0.27], ['100PFC',  8.33, 0.35], ['125PFC', 11.9, 0.46],
+    ['150PFC', 17.7,  0.54], ['180PFC', 20.9,  0.60], ['200PFC', 22.9, 0.63],
+    ['250PFC', 35.5,  0.78],
+  ],
+  EA: [
+    ['65x65x5EA',    4.97, 0.26], ['65x65x6EA',    5.91, 0.26], ['65x65x8EA',    7.73, 0.26], ['65x65x10EA',   9.45, 0.26],
+    ['75x75x5EA',    5.76, 0.30], ['75x75x6EA',    6.85, 0.30], ['75x75x8EA',    8.97, 0.30], ['75x75x10EA',  11.0,  0.30],
+    ['90x90x6EA',    8.30, 0.36], ['90x90x8EA',   10.9,  0.36], ['90x90x10EA',  13.4,  0.36], ['90x90x12EA',  15.9,  0.36],
+    ['100x100x6EA',  9.24, 0.40], ['100x100x8EA', 12.2,  0.40], ['100x100x10EA',15.0,  0.40], ['100x100x12EA',17.7,  0.40],
+    ['125x125x8EA', 15.4,  0.50], ['125x125x10EA',19.0,  0.50], ['125x125x12EA',22.7,  0.50], ['125x125x16EA',29.6,  0.50],
+    ['150x150x10EA',23.0,  0.60], ['150x150x12EA',27.4,  0.60], ['150x150x16EA',35.9,  0.60],
+    ['200x200x13EA',49.9,  0.80], ['200x200x16EA',60.7,  0.80], ['200x200x20EA',74.9,  0.80],
+  ],
+};
+
+// ── State
+var baseKgm = 0;
+var baseSA  = 0;  // m²/m
+var plates  = []; // [{w, t}]  width mm, thickness mm
+
+// ── Section type change
+function onTypeChange() {
+  var type = document.getElementById('secType').value;
+  var sizeField = document.getElementById('sizeField');
+  var secSize   = document.getElementById('secSize');
+  ['chsDims','shsDims','rhsDims'].forEach(function(id){ document.getElementById(id).style.display='none'; });
+  sizeField.style.display = 'none';
+  hideInfoBar();
+
+  if (['CHS','SHS','RHS'].indexOf(type) >= 0) {
+    document.getElementById(type.toLowerCase()+'Dims').style.display = 'flex';
+    clearSectionInputs();
+  } else if (SECTIONS[type]) {
+    secSize.innerHTML = '<option value="">— select size —</option>';
+    SECTIONS[type].forEach(function(s) {
+      var o = document.createElement('option');
+      o.value = JSON.stringify({w: s[1], sa: s[2], label: s[0]});
+      o.textContent = s[0];
+      secSize.appendChild(o);
+    });
+    sizeField.style.display = 'flex';
+  } else {
+    clearSectionInputs();
+  }
+}
+
+// ── Standard section selected
+function onSectionChange() {
+  var val = document.getElementById('secSize').value;
+  if (!val) { hideInfoBar(); return; }
+  var sec = JSON.parse(val);
+  applySection(sec.w, sec.sa, sec.label);
+}
+
+// ── Hollow section computed
+function onHollowChange() {
+  var type = document.getElementById('secType').value;
+  var kgm = 0, sa = 0, label = '';
+  if (type === 'CHS') {
+    var OD = parseFloat(document.getElementById('chsOD').value);
+    var t  = parseFloat(document.getElementById('chsT').value);
+    if (OD > 0 && t > 0 && t < OD/2) {
+      kgm   = Math.PI * (OD - t) * t * 7.85e-3;
+      sa    = Math.PI * OD / 1000;
+      label = OD + ' x ' + t + ' CHS';
+    }
+  } else if (type === 'SHS') {
+    var b = parseFloat(document.getElementById('shsB').value);
+    var t = parseFloat(document.getElementById('shsT').value);
+    if (b > 0 && t > 0 && t < b/2) {
+      kgm   = 4 * (b - t) * t * 7.85e-3;
+      sa    = 4 * b / 1000;
+      label = b + 'x' + b + 'x' + t + ' SHS';
+    }
+  } else if (type === 'RHS') {
+    var d = parseFloat(document.getElementById('rhsD').value);
+    var b = parseFloat(document.getElementById('rhsB').value);
+    var t = parseFloat(document.getElementById('rhsT').value);
+    if (d > 0 && b > 0 && t > 0 && t < Math.min(d,b)/2) {
+      kgm   = 2 * (d + b - 2*t) * t * 7.85e-3;
+      sa    = 2 * (d + b) / 1000;
+      label = d + 'x' + b + 'x' + t + ' RHS';
+    }
+  }
+  if (kgm > 0) {
+    applySection(kgm, sa, label);
+  } else {
+    hideInfoBar();
+  }
+}
+
+function applySection(w, sa, label) {
+  baseKgm = w;
+  baseSA  = sa;
+  showInfoBar(label, w, sa);
+  refreshTotals();
+}
+
+function showInfoBar(label, w, sa) {
+  document.getElementById('infoLabel').textContent = label;
+  document.getElementById('infoKgm').textContent   = fmt(w);
+  document.getElementById('infoSA').textContent    = sa.toFixed(3);
+  document.getElementById('infoSAt').textContent   = (w > 0) ? fmt(sa / w * 1000) : '—';
+  document.getElementById('secInfoBar').style.display = 'flex';
+}
+
+function hideInfoBar() {
+  document.getElementById('secInfoBar').style.display = 'none';
+  baseKgm = 0; baseSA = 0;
+  refreshTotals();
+}
+
+function clearSectionInputs() {
+  baseKgm = 0; baseSA = 0;
+  refreshTotals();
+}
+
+// ── Manual kg/m entry (clears section selection)
+function onManualInput() {
+  baseKgm = parseFloat(document.getElementById('txtStructuralMember').value) || 0;
+  baseSA  = 0;
+  hideInfoBar();
+  document.getElementById('secType').value = '';
+  onTypeChange();
+  calculate();
+}
+
+// ── Built-up plates
+function addPlate() {
+  plates.push({w: '', t: ''});
+  renderPlates();
+}
+
+function removePlate(i) {
+  plates.splice(i, 1);
+  renderPlates();
+  refreshTotals();
+}
+
+function renderPlates() {
+  var list = document.getElementById('platesList');
+  list.innerHTML = '';
+  plates.forEach(function(p, i) {
+    var row = document.createElement('div');
+    row.className = 'plate-row';
+    var kgm = plateKgm(p);
+    row.innerHTML =
+      '<input type="number" placeholder="width (mm)" value="' + p.w + '" oninput="onPlateInput(' + i + ',\'w\',this.value)">' +
+      '<span style="color:#999">×</span>' +
+      '<input type="number" placeholder="thk (mm)" value="' + p.t + '" oninput="onPlateInput(' + i + ',\'t\',this.value)">' +
+      '<span class="kgm-badge">' + (isFinite(kgm) && kgm > 0 ? '= ' + fmt(kgm) + ' kg/m' : '') + '</span>' +
+      '<button class="btn-remove" onclick="removePlate(' + i + ')" title="Remove">×</button>';
+    list.appendChild(row);
+  });
+}
+
+function onPlateInput(i, key, val) {
+  plates[i][key] = val;
+  renderPlates();
+  refreshTotals();
+}
+
+function plateKgm(p) {
+  var w = parseFloat(p.w), t = parseFloat(p.t);
+  return (w > 0 && t > 0) ? w * t * 7.85e-3 : 0;
+}
+
+function refreshTotals() {
+  var totalPlateKgm = plates.reduce(function(s, p){ return s + plateKgm(p); }, 0);
+  var totalPlateWidth = plates.reduce(function(s, p){ return s + (parseFloat(p.w) || 0); }, 0);
+  var totalKgm = baseKgm + totalPlateKgm;
+  // Plate SA contribution: both exposed faces per plate (per linear metre)
+  var plateSA = totalPlateWidth * 2 / 1000;
+  var totalSA = baseSA + plateSA;
+
+  var row = document.getElementById('totalKgmRow');
+  if (plates.length > 0 && baseKgm > 0) {
+    document.getElementById('totalKgmVal').textContent = fmt(totalKgm);
+    document.getElementById('totalSAVal').textContent  = totalSA.toFixed(3);
+    row.style.display = 'block';
+  } else {
+    row.style.display = 'none';
+  }
+
+  // Push computed total into the kg/m input and surface area state
+  if (baseKgm > 0) {
+    document.getElementById('txtStructuralMember').value = fmt(totalKgm);
+  }
+  calculate(totalSA);
+}
+
+// ── Core calculator
+function calculate(overrideSA) {
   var v1 = parseFloat(document.getElementById('txtStructuralMember').value);
   var v2 = parseFloat(document.getElementById('txtPlateThickness').value);
 
@@ -274,15 +506,24 @@ function calculate() {
   setResult('lblCalcPlateFabrication',             804.49  * Math.pow(v2, -1.0016));
   setResult('lblCalcStructuralMemberInstallation', -14.85  * Math.log(v1) + 83.355);
   setResult('lblCalcPlateInstallation',            269.98  * Math.pow(v2, -1));
+
+  // Surface area
+  var sa = (overrideSA !== undefined) ? overrideSA : baseSA;
+  if (sa > 0 && v1 > 0) {
+    document.getElementById('lblSAm').textContent = sa.toFixed(3);
+    document.getElementById('lblSAt').textContent = fmt(sa / v1 * 1000);
+  } else {
+    document.getElementById('lblSAm').textContent = '—';
+    document.getElementById('lblSAt').textContent = '—';
+  }
 }
 
 function setResult(id, value) {
-  var el = document.getElementById(id);
-  if (!isFinite(value) || isNaN(value)) {
-    el.textContent = '—';
-  } else {
-    el.textContent = parseFloat(value.toFixed(1)).toLocaleString();
-  }
+  document.getElementById(id).textContent = (isFinite(value) && !isNaN(value)) ? fmt(value) : '—';
+}
+
+function fmt(n) {
+  return parseFloat(n.toFixed(1)).toLocaleString();
 }
 </script>
 </body>
